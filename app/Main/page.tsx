@@ -3,6 +3,7 @@ export default function Main(){
         <>
         <div>
             
+            <h2>We start with some basic commands</h2>
         </div>
         </>
     )
