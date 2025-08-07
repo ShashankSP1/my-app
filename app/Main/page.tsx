@@ -1,7 +1,7 @@
 export default function Main(){
     return(
         <>
-        <div>
+        <div className="">
             
             <h2>We start with some basic commands</h2>
         </div>
