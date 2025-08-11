@@ -1,9 +1,37 @@
+"use client";
 import React from "react";
+import { useEffect } from "react";
+const Main = () => {
 
-const Home = () => {
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.src = "https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js";
+    script.async = true;
+    script.onload = () => {
+      // @ts-ignore
+      if (window.Typed) {
+        // @ts-ignore
+        new window.Typed("#element", {
+          strings: [
+            "Web Application Developer",
+            "Software Development Engineer",
+            "Front-end Developer",
+            "Java Developer",
+            "Full Stack Developer",
+          ],
+          typeSpeed: 80,
+          loop: true,
+        });
+      }
+    };
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
   return (
     <>
-      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-black text-white px-4 py-10">
+      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-4 py-10">
         {/* Left Image */}
         <div className="md:w-1/2 mb-8 md:mb-0 flex justify-center">
           <img
@@ -19,16 +47,16 @@ const Home = () => {
             About Me
           </h1>
 
-          <p className="text-lg leading-relaxed text-white mb-6 max-w-xl">
-            I am a passionate and results-driven <span className="text-blue-400">Software Engineer</span> with a strong
-            foundation in Java, front-end technologies, and database management.
+          <p className="text-lg leading-relaxed mb-6 max-w-xl">
+            I am a passionate and results-driven{" "}
+            <span id="element" className="text-blue-400"></span><br></br> 
+            with a strong foundation in Java, front-end technologies, and database management.
             Also, I was passionate about complex problems solving through
             innovative technology solutions. I specialize in designing and
             developing robust, scalable, and innovative software solutions that
-            meet the ever-evolving needs of clients.
-            Worked on multiple startups and payment projects to get the
-            ideas into real-world web applications and developed
-            successful startups in India.
+            meet the ever-evolving needs of clients. Worked on multiple startups
+            and payment projects to get the ideas into real-world web
+            applications and developed successful startups in India.
           </p>
 
           <a
@@ -44,4 +72,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Main;
