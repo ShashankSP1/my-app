@@ -31,7 +31,7 @@ const Main = () => {
   }, []);
   return (
     <>
-      <div className="flex flex-col md:flex-row items-center justify-center min-h-screen px-4 py-10">
+      <div className="flex flex-col z-10 md:flex-row items-center justify-center min-h-screen px-4 py-10">
         {/* Left Image */}
         <div className="md:w-1/2 mb-8 md:mb-0 flex justify-center">
           <img

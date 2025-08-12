@@ -14,10 +14,10 @@ export default function Nav() {
   if (!mounted) return null;
 
   return (
-    <nav>
+    <nav className="z-50">
       <div
         className={`
-          fixed top-0 left-0 w-full z-999 flex justify-between items-center p-4
+          fixed top-0 left-0 w-full flex justify-between items-center p-4
         `}
       >
         <img
