@@ -14,43 +14,41 @@ export default function Nav() {
   if (!mounted) return null;
 
   return (
-    <nav className="z-50">
+    <nav >
       <div
-        className={`
-          fixed top-0 left-0 w-full flex justify-between items-center p-4
-        `}
+        className={`fixed top-0 left-0 w-full flex justify-between items-center p-4 z-50 md:z-100 ${theme==='dark'? 'bg-blue-950':'bg-gray-100'}`}
       >
         <img
-          src="/developer.png"
+          src={` ${theme==='dark' ? 'Developer_dark.png':'/Developer_light.png'} `}
           alt="icon"
-          className="w-12 h-10 cursor-pointer"
+          className="w-80 h-10 cursor-pointer"
         />
         {/* Desktop Menu */}
         <ul className="hidden md:flex gap-4 items-center">
           <li>
             <button
-              className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-950' : 'hover:bg-blue-500'}`}
+              className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-900' : 'hover:bg-gray-300'}`}
             >
               <Link href="/">Home</Link>
             </button>
           </li>
           <li>
-            <button className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-950' : 'hover:bg-blue-500'}`}>
+            <button className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-900' : 'hover:bg-gray-300'}`}>
               <Link href="/About">About</Link>
             </button>
           </li>
           <li>
-            <button className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-950' : 'hover:bg-blue-500'}`}>
+            <button className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-900' : 'hover:bg-gray-300'}`}>
               <Link href="/Project">Projects</Link>
             </button>
           </li>
           <li>
-            <button className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-950' : 'hover:bg-blue-500'}`}>
+            <button className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-900' : 'hover:bg-gray-300'}`}>
               <Link href="/Collaboration">Collaboration</Link>
             </button>
           </li>
           <li>
-            <button className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-950' : 'hover:bg-blue-500'}`}>
+            <button className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-900' : 'hover:bg-gray-300'}`}>
               <Link href="/Contact">Contact</Link>
             </button>
           </li>
