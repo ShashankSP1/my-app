@@ -19,7 +19,7 @@ export default function Nav() {
         className={`fixed top-0 left-0 w-full flex justify-between items-center p-4 z-50 md:z-100 ${theme==='dark'? 'bg-blue-950':'bg-gray-100'}`}
       >
         <img
-          src={` ${theme==='dark' ? 'Developer_dark.png':'/Developer_light.png'} `}
+          src={` ${theme==='dark' ? '/Developer_dark.png':'/Developer_light.png'} `}
           alt="icon"
           className="w-80 h-10 cursor-pointer"
         />
