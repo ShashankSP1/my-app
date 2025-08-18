@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      animation:{
+        'infinite-scroll':'infinite-scroll 25s linear infinite',
+      },
       zIndex: {
         60: "60",
         70: "70",

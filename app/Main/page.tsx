@@ -19,7 +19,6 @@ const Main = () => {
           strings: [
             "Web Application Developer",
             "Software Development Engineer",
-            "Front-end Developer",
             "Java Developer",
             "Full Stack Developer",
           ],
@@ -76,15 +75,15 @@ const Main = () => {
             {/* Preview Trigger Button */}
             <button
               onClick={() => setIsOpen(true)}
-              className="bg-blue-600 hover:bg-blue-700 transition-all text-white font-bold py-3 px-6 rounded-lg shadow-lg border border-blue-400"
+              className="bg-blue-600 hover:bg-blue-700 cursor-pointer transition-all text-white font-bold py-3 px-6 rounded-lg shadow-lg border border-blue-400"
             >
               My Resume
             </button>
 
             {/* Modal */}
             {isOpen && (
-              <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-                <div className="bg-white p-4 rounded-lg shadow-lg max-w-2xl w-full">
+              <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
+                <div className="bg-white p-4 rounded-lg shadow-lg w-[80%] max-w-xl">
                   {/* Close Button */}
                   <div className="flex justify-between items-center mb-4">
                     <h2 className="text-xl font-bold">Resume Preview</h2>
@@ -100,7 +99,7 @@ const Main = () => {
                   <iframe
                     src="/Shashank_SP_Resume.pdf"
                     title="Resume Preview"
-                    className="w-full h-[500px] border"
+                    className="w-full h-[400px] border rounded"
                   ></iframe>
 
                   {/* Download Button */}
