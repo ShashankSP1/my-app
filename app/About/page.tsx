@@ -65,7 +65,7 @@ const about = () => {
     { src: "/javascript.png", alt: "JavaScript" },
     { src: `${theme === "dark" ? '/github.svg' : '/github.png'}`, alt: "Git" },
     { src: `${theme === "dark" ? '/express.js.png': '/expressjs.png'}` , alt: "Express.js" },
-    { src: "/intelliJ_IDEA.png", alt: "Intellij IDEA" },
+    { src: "/IntelliJ_IDEA.png", alt: "Intellij_IDEA" },
     { src: "/vscode.png", alt: "VS Code" },
     { src: `${theme === "dark" ? '/jQuery-dark.png': '/jQuery.png'}` , alt: "Express.js" },
     { src: "/postman-logo.png", alt: "Postman" },
