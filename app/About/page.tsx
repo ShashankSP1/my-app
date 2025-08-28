@@ -7,6 +7,10 @@ import {
   FaMapMarkerAlt,
   FaGraduationCap,
   FaBirthdayCake,
+  FaClock,
+  FaLanguage,
+  FaLaptopHouse,
+  FaLightbulb,
 } from "react-icons/fa";
 import Link from "next/link";
 import { useTheme } from "next-themes";
@@ -32,39 +36,58 @@ const date = () => {
 
   return `${years} years ${months} months ${days} days`;
 };
+
+const exp = () => {
+  const startDate = new Date("2025-03-04");
+  const today = new Date();
+
+  let years = today.getFullYear() - startDate.getFullYear();
+  let months = today.getMonth() - startDate.getMonth();
+ 
+  if (months < 0) {
+    years--;
+    months += 12;
+  }
+
+  return `${years} years ${months} months`;
+};
 const about = () => {
   const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
 
   const skills = [
-    { src: "/favicon.png", alt: "React" },
-    { src: "/favicon.png", alt: "Java" },
-    { src: "/favicon.png", alt: "Node.js" },
-    { src: "/favicon.png", alt: "JavaScript" },
-    { src: "/favicon.png", alt: "CSS" },
-    { src: "/favicon.png", alt: "HTML" },
-    { src: "/favicon.png", alt: "Express.js" },
-    { src: "/favicon.png", alt: "MongoDB" },
-    { src: "/favicon.png", alt: "Tailwind" },
-    { src: "/favicon.png", alt: "Git" },
+    { src: "/java.webp", alt: "Java" },
+    { src: "/mongodb.webp", alt: "MongoDB" },
+    { src: "/my_sql.webp", alt: "MySQL" },
+    { src: "/react.webp", alt: "React.js" },
+    { src: "/node.js.png", alt: "Node.js" },
+    { src: "/postgres.webp", alt: "PostGreSQL" },
+    { src: "/javascript.png", alt: "JavaScript" },
+    { src: `${theme === "dark" ? '/github.svg' : '/github.png'}`, alt: "Git" },
+    { src: `${theme === "dark" ? '/express.js.png': '/expressjs.png'}` , alt: "Express.js" },
+    { src: "/intelliJ_IDEA.png", alt: "Intellij IDEA" },
+    { src: "/vscode.png", alt: "VS Code" },
+    { src: `${theme === "dark" ? '/jQuery-dark.png': '/jQuery.png'}` , alt: "Express.js" },
+    { src: "/postman-logo.png", alt: "Postman" },
+    { src: "/gitlab.png", alt: "GitLab" }
   ];
 
-  const repeatedLogos = [...skills, ...skills, ...skills, ...skills];
+  const repeatedLogos = [...skills, ...skills];
 
   return (
     <>
-      <div className="flex flex-col z-10 md:flex-row justify-center min-h-screen px-4 py-36 gap-8">
+      <div className="flex flex-col max-w-[95%] mx-auto z-10 md:flex-row justify-center min-h-screen px-4 py-36 gap-8">
         {/* Left - Education */}
-        <div className="md:w-1/2 flex flex-col items-center">
+        <div className="md:w-1/2 flex flex-col">
           <h1
             className={`${
               theme === "dark" ? "text-blue-700" : "text-blue-700"
             } text-4xl font-bold mb-8 border-b-2`}
           >
-            Education Details
+            Education
           </h1>
 
-          <div className="space-y-6 w-[90%]">
+          <div className="space-y-6 w-[90%] items-center">
             {/* Degree */}
             <div
               className={`${
@@ -151,10 +174,26 @@ const about = () => {
               <FaBirthdayCake className="text-pink-500" />{" "}
               <span className="font-semibold">Age:</span> {date()}
             </li>
+            <li className="flex items-center gap-2">
+              <FaClock className="text-yellow-500" />{" "}
+              <span className="font-semibold">Year of Experience:</span> {exp()}
+            </li>
+            <li className="flex items-center gap-2">
+              <FaLanguage className="text-blue-600" />{" "}
+              <span className="font-semibold">Languages:</span>Kannada, English, and Hindi
+            </li> 
+            <li className="flex items-center gap-2">
+              <FaLaptopHouse className="text-green-600" />{" "}
+              <span className="font-semibold">Open to:</span>Remote roles and freelance projects
+            </li>  
+            <li className="flex items-center gap-2">
+              <FaLightbulb className="text-yellow-400" />{" "}
+              <span className="font-semibold">Interests:</span>Web Development, Coding, DevOps
+            </li>       
           </ul>
         </div>
       </div>
-      <div className=" max-w-7xl justify-center ml-14">
+      <div className=" max-w-[90%] mx-auto px-4">
         <h1
           className={`${
             theme === "dark" ? "text-blue-700" : "text-blue-700"
@@ -163,30 +202,18 @@ const about = () => {
           Technologies I work with
         </h1>
 
-        <div className="w-full overflow-hidden mx-4 gap-20 py-10">
-          <div className="marquee flex items-center">
-            <ul className='flex items-center gap-8 lg:gap-20 [&_li]:mx-16 [&_img]:max-w-none'>
-              <li><img src='img/WeSupport_visa.png' alt='Visa' /></li>
-              <li><img src='img/WeSupport_mc.png' alt='Mastercard' /></li>
-              <li><img src='img/WeSupport_rupay.png' alt='Rupay' /></li>
-              <li><img src='img/WeSupport_upi.png' alt='UPI' /></li>
-              <li><img src='img/weSupport_Bp.png' alt='BharathPe' /></li>
-              <li><img src='img/WeSupport_visa.png' alt='Visa' /></li>
-              <li><img src='img/WeSupport_mc.png' alt='Mastercard' /></li>
-              <li><img src='img/WeSupport_rupay.png' alt='Rupay' /></li>
-              <li><img src='img/WeSupport_upi.png' alt='UPI' /></li>
-              <li><img src='img/weSupport_Bp.png' alt='BharathPe' /></li>
-            </ul>
-            <ul className='flex items-center gap-8 lg:gap-20 [&_li]:mx-16 [&_img]:max-w-none'>
-              <li><img src='img/WeSupport_visa.png' alt='Visa' /></li>
-              <li><img src='img/WeSupport_mc.png' alt='Mastercard' /></li>
-              <li><img src='img/WeSupport_rupay.png' alt='Rupay' /></li>
-              <li><img src='img/WeSupport_upi.png' alt='UPI' /></li>
-              <li><img src='img/weSupport_Bp.png' alt='BharathPe' /></li>
-            </ul>
+        <div className="relative overflow-hidden w-full h-20">
+          <div className="absolute animate-marquee flex gap-14 whitespace-nowrap">
+            {[...skills, ...skills].map((skill, index) => (
+              <img
+                key={index}
+                src={skill.src}
+                alt={skill.alt}
+                className="h-12 w-12 object-contain"
+              />
+            ))}
           </div>
         </div>
-
       </div>
     </>
   );

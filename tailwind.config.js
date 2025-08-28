@@ -1,3 +1,5 @@
+const { keyframes } = require('framer-motion');
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -9,7 +11,13 @@ module.exports = {
   theme: {
     extend: {
       animation:{
-        'infinite-scroll':'infinite-scroll 25s linear infinite',
+        marquee:'marquee 30s linear infinite',
+      },
+      keyframes:{
+        marquee:{
+          '0%':{transform:'translateX(0%)'},
+          '100%':{transform:'translateX(-100%)'},
+        },
       },
       zIndex: {
         60: "60",
