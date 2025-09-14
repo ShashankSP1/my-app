@@ -1,14 +1,14 @@
 "use client";
 import { FaGithub, FaLinkedin, FaEnvelope, FaTwitter } from "react-icons/fa";
-import React, { useState, useEffect } from "react";
-import { sendEmail } from "../utils/api";
+import React, { useState } from "react";
+import { sendEmail } from "../utils/api"; // ✅ using our helper
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 
 const Swal = typeof window !== "undefined" ? require("sweetalert2") : null;
 
 export default function Contact() {
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
 
   const [formData, setFormData] = useState({
     name: "",
@@ -29,48 +29,7 @@ export default function Contact() {
     e.preventDefault();
     setStatus("Sending...");
 
-  //   try {
-  //     // const res = await fetch("http://localhost:5000/api/send-email" , {
-  //     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/send-email`, {
-  //       method: "POST",
-  //       headers: { "Content-Type": "application/json" },
-  //       body: JSON.stringify({
-  //         to: "shashankshiva6361@gmail.com",
-  //         subject: formData.subject,
-  //         text: `From: ${formData.name} <${formData.email}>\n\n${formData.message}`,
-  //       }),
-  //     });
-
-  //     const data = await res.json();
-
-  //   if (res.ok) {
-  //     Swal.fire({
-  //       icon: "success",
-  //       title: "Your message has been sent successfully",
-  //       text: data.message,
-  //       confirmButtonColor: "#2563eb",
-  //     });
-  //     setStatus("");
-  //     setFormData({ name: "", email: "", subject: "", message: "" });
-  //   } else {
-  //     Swal.fire({
-  //       icon: "error",
-  //       title: "Oops...",
-  //       text: data.error,
-  //     });
-  //     setStatus("");
-  //   }
-  // } catch (err: any) {
-  //   Swal.fire({
-  //     icon: "error",
-  //     title: "Error",
-  //     text: err.message,
-  //   });
-  //   setStatus("");
-  // }
-  // };
-
-   const { ok, data, error } = await sendEmail(formData);
+    const { ok, data, error } = await sendEmail(formData);
 
     if (ok) {
       Swal.fire({
@@ -177,7 +136,6 @@ export default function Contact() {
           } shadow-lg rounded-2xl p-6 flex flex-col gap-6`}
         >
           <h2 className="text-2xl font-bold">Get in Touch</h2>
-
           {/* Google Map */}
           <div className="w-full h-72 rounded-lg overflow-hidden">
             <iframe
@@ -196,7 +154,6 @@ export default function Contact() {
               560068
             </p>
           </div>
-
           {/* Social Media */}
           <div>
             <h1 className="text-2xl gap-5">Connect with me</h1>
