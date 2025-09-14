@@ -29,7 +29,8 @@ export default function Contact() {
     setStatus("Sending...");
 
     try {
-      const res = await fetch("http://localhost:5000/api/send-email", {
+      // const res = await fetch("http://localhost:5000/api/send-email" , {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/send-email`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
