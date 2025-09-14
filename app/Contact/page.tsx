@@ -1,6 +1,7 @@
 "use client";
 import { FaGithub, FaLinkedin, FaEnvelope, FaTwitter } from "react-icons/fa";
 import React, { useState, useEffect } from "react";
+import { sendEmail } from "../utils/api";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 
@@ -28,21 +29,50 @@ export default function Contact() {
     e.preventDefault();
     setStatus("Sending...");
 
-    try {
-      // const res = await fetch("http://localhost:5000/api/send-email" , {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/send-email`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          to: "shashankshiva6361@gmail.com",
-          subject: formData.subject,
-          text: `From: ${formData.name} <${formData.email}>\n\n${formData.message}`,
-        }),
-      });
+  //   try {
+  //     // const res = await fetch("http://localhost:5000/api/send-email" , {
+  //     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/api/send-email`, {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({
+  //         to: "shashankshiva6361@gmail.com",
+  //         subject: formData.subject,
+  //         text: `From: ${formData.name} <${formData.email}>\n\n${formData.message}`,
+  //       }),
+  //     });
 
-      const data = await res.json();
+  //     const data = await res.json();
 
-    if (res.ok) {
+  //   if (res.ok) {
+  //     Swal.fire({
+  //       icon: "success",
+  //       title: "Your message has been sent successfully",
+  //       text: data.message,
+  //       confirmButtonColor: "#2563eb",
+  //     });
+  //     setStatus("");
+  //     setFormData({ name: "", email: "", subject: "", message: "" });
+  //   } else {
+  //     Swal.fire({
+  //       icon: "error",
+  //       title: "Oops...",
+  //       text: data.error,
+  //     });
+  //     setStatus("");
+  //   }
+  // } catch (err: any) {
+  //   Swal.fire({
+  //     icon: "error",
+  //     title: "Error",
+  //     text: err.message,
+  //   });
+  //   setStatus("");
+  // }
+  // };
+
+   const { ok, data, error } = await sendEmail(formData);
+
+    if (ok) {
       Swal.fire({
         icon: "success",
         title: "Your message has been sent successfully",
@@ -55,18 +85,10 @@ export default function Contact() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: data.error,
+        text: error || data?.error,
       });
       setStatus("");
     }
-  } catch (err: any) {
-    Swal.fire({
-      icon: "error",
-      title: "Error",
-      text: err.message,
-    });
-    setStatus("");
-  }
   };
 
   return (
