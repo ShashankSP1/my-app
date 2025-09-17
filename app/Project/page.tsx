@@ -1,9 +1,147 @@
-import React from 'react'
+"use client";
+import React, { useState } from "react";
+import { FiLink } from "react-icons/fi";
+import { useTheme } from "next-themes";
+import { FaPause, FaPlay } from "react-icons/fa";
+import { link } from "fs";
 
-const project = () => {
+const works = [
+  {
+    id: 1,
+    title: "Villagepepro (Group Project)",
+    description:
+      "A fintech platform for seamless payments, wallet integration, and transaction management.",
+    img: "/gmax-fintech.jpg",
+    link: "https://villagepepro.com/",
+  },
+  {
+    id: 2,
+    title: "Neuva Life Sciences (Group Project)",
+    description:
+      "Website for a baby care products company, showcasing their product range and e-commerce features.",
+    img: "/baby_image.jpg",
+    link: "https://www.neuvalifesciences.com/",
+  },
+  {
+    id: 3,
+    title: "CCIE Labs (Group Project)",
+    description:
+      "Training center website for networking certifications with course details and enrollment features.",
+    img: "/training-center.jpeg",
+    link: "https://www.pexels.com/search/website%20background/",
+  },
+  {
+    id: 4,
+    title: "Home Pitara (Group Project)",
+    description:
+      "A real estate project that helps users discover, compare, and connect with property listings.",
+    img: "/Home-image.jpeg",
+    link: "https://homepitara.com/",
+  },
+  {
+    id: 5,
+    title: "Coming Soon",
+    description:
+      "Exciting new project under development. Stay tuned for updates.",
+    img: "https://images.unsplash.com/photo-1522199710521-72d69614c702?ixlib=rb-4.0.3&w=1000&q=80",
+    link: "https://www.pexels.com/search/website%20background/",
+  },
+  {
+    id: 6,
+    title: "Coming Soon",
+    description:
+      "Another upcoming project in progress. Details will be revealed shortly.",
+    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&w=1000&q=80",
+    link: "https://www.pexels.com/search/website%20background/",
+  },
+  {
+    id: 7,
+    title: "Coming Soon",
+    description: "Future project with innovative solutions. Launching soon.",
+    img: "https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&w=1000&q=80",
+    link: "https://www.pexels.com/search/website%20background/",
+  },
+];
+
+export default function Project() {
+  const { theme, setTheme } = useTheme();
+  const [isPaused, setIsPaused] = useState(false);
   return (
-    <div>Project</div>
-  )
-}
+    <div
+      className={`min-h-screen mt-14 bg-gradient-to-b flex flex-col items-center ${
+        theme === "dark"
+          ? "from-purple-900 to-slate-950"
+          : "from-sky-200 to-sky-400"
+      } `}
+    >
+      {/* Section Title */}
+      <section className="text-center my-10 px-6">
+        <h2 className="text-4xl font-serif font-bold">My Works</h2>
+        <p
+          className={`mt-2 max-w-2xl mx-auto ${
+            theme === "dark" ? "text-gray-300" : "text-gray-700"
+          }`}
+        >
+          Explore a showcase of projects I have worked on — including fintech
+          applications, e-commerce platforms, training center websites, and real
+          estate solutions. These works highlight my skills in React, Node.js,
+          and full-stack development while solving real-world problems.
+        </p>
+      </section>
 
-export default project
+      <div className={`absolute top-1/3 right-4 -translate-y-1/2 flex flex-col shadow-lg rounded-xl p-2 backdrop-blur-2xl ${theme === "dark" ? " bg-purple-700" : "bg-blue-500"}`}>
+        {isPaused ? (
+          <button
+            onClick={() => setIsPaused(false)}
+            className={`p-2 rounded-lg transition cursor-pointer ${theme === "dark" ? "bg-purple-700 hover:border-amber-50" : "bg-blue-500 hover:border-amber-50"}`}
+          >
+            <FaPlay className="text-gray-200" />
+          </button>
+        ) : (
+          <button
+            onClick={() => setIsPaused(true)}
+            className={`p-2 rounded-lg transition cursor-pointer ${theme === "dark" ? "bg-purple-700 hover:border-amber-50" : "bg-blue-500 hover:border-amber-50"}`}
+          >
+            <FaPause className="text-gray-200" />
+          </button>
+        )}
+      </div>
+
+      <div className="relative w-full overflow-hidden py-10">
+        <div className={`flex gap-6 w-max  ${isPaused ? "" : "marquee"}`}>
+          {[...works, ...works].map((work, i) => (
+            <div
+              key={i}
+              className="relative min-w-[280px] max-w-sm flex-shrink-0 rounded-3xl overflow-hidden shadow-lg group"
+            >
+              <img
+                src={work.img}
+                alt={work.title}
+                className="w-full h-96 object-cover"
+              />
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-4">
+                <h3 className="text-lg font-semibold text-amber-300">
+                  {work.title}
+                </h3>
+                <p className="text-sm mt-1 text-center">{work.description}</p>
+
+                <div className="flex gap-4 mt-4">
+                  <button className="bg-white text-black cursor-pointer px-4 py-2 rounded-full text-sm hover:bg-gray-200">
+                    View Project
+                  </button>
+                  <a
+                    href={work.link}
+                    target="_blank"
+                    className="w-10 h-10 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition"
+                  >
+                    <FiLink size={18} />
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
