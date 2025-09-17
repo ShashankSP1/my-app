@@ -1,8 +1,15 @@
 @import "tailwindcss";
-
 :root {
   --background: #ffffff;
   --foreground: #171717;
+}
+
+/* @import "tailwindcss/preflight"; */
+@tailwind utilities;
+
+@keyframes marquee {
+  0%   { transform: translateX(0%);}
+  100% { transform: translateX(-100%);}
 }
 
 @theme inline {
@@ -17,6 +24,10 @@
     --background: #0d0d0d;
     --foreground: #ededed;
   }
+}
+
+.animate-marquee {
+  animation: marquee 10s linear infinite;
 }
 
 body {
@@ -34,8 +45,12 @@ body {
   100% { transform: translateX(-33.33%); }
 }
 
-.animate-marquee {
-  animation: marquee 10s linear infinite;
+.marquee {
+  display: flex;
+  width: max-content;
+  overflow: hidden;
+  position: relative;
+  animation: marquee 40s linear infinite;
 }
 
 
