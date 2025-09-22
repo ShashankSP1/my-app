@@ -1,9 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { FiLink } from "react-icons/fi";
 import { useTheme } from "next-themes";
 import { FaPause, FaPlay } from "react-icons/fa";
-import { link } from "fs";
+import { FiCopy } from "react-icons/fi";
 
 const works = [
   {
@@ -66,6 +65,14 @@ const works = [
 export default function Project() {
   const { theme, setTheme } = useTheme();
   const [isPaused, setIsPaused] = useState(false);
+  const [copied, setCopied] = useState<number | null>(null); // track which index is copied
+
+  const handleCopy = (link: string, index: number) => {
+    navigator.clipboard.writeText(link);
+    setCopied(index); 
+    setTimeout(() => setCopied(null), 2000);
+  };
+
   return (
     <div
       className={`min-h-screen mt-14 bg-gradient-to-b flex flex-col items-center ${
@@ -76,7 +83,7 @@ export default function Project() {
     >
       {/* Section Title */}
       <section className="text-center my-10 px-6">
-        <h2 className="text-4xl font-serif font-bold">My Works</h2>
+        <h2 className="text-4xl font-serif font-bold">My Projects</h2>
         <p
           className={`mt-2 max-w-2xl mx-auto ${
             theme === "dark" ? "text-gray-300" : "text-gray-700"
@@ -89,18 +96,30 @@ export default function Project() {
         </p>
       </section>
 
-      <div className={`absolute top-1/3 right-4 -translate-y-1/2 flex flex-col shadow-lg rounded-xl p-2 backdrop-blur-2xl ${theme === "dark" ? " bg-purple-700" : "bg-blue-500"}`}>
+      <div
+        className={`absolute top-1/3 right-4 -translate-y-1/2 flex flex-col shadow-lg rounded-xl p-2 backdrop-blur-2xl ${
+          theme === "dark" ? " bg-purple-700" : "bg-blue-500"
+        }`}
+      >
         {isPaused ? (
           <button
             onClick={() => setIsPaused(false)}
-            className={`p-2 rounded-lg transition cursor-pointer ${theme === "dark" ? "bg-purple-700 hover:border-amber-50" : "bg-blue-500 hover:border-amber-50"}`}
+            className={`p-2 rounded-lg transition cursor-pointer ${
+              theme === "dark"
+                ? "bg-purple-700 hover:border-amber-50"
+                : "bg-blue-500 hover:border-amber-50"
+            }`}
           >
             <FaPlay className="text-gray-200" />
           </button>
         ) : (
           <button
             onClick={() => setIsPaused(true)}
-            className={`p-2 rounded-lg transition cursor-pointer ${theme === "dark" ? "bg-purple-700 hover:border-amber-50" : "bg-blue-500 hover:border-amber-50"}`}
+            className={`p-2 rounded-lg transition cursor-pointer ${
+              theme === "dark"
+                ? "bg-purple-700 hover:border-amber-50"
+                : "bg-blue-500 hover:border-amber-50"
+            }`}
           >
             <FaPause className="text-gray-200" />
           </button>
@@ -129,13 +148,12 @@ export default function Project() {
                   <button className="bg-white text-black cursor-pointer px-4 py-2 rounded-full text-sm hover:bg-gray-200">
                     View Project
                   </button>
-                  <a
-                    href={work.link}
-                    target="_blank"
+                  <button
+                    onClick={() => handleCopy(work.link, i)}
                     className="w-10 h-10 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition"
                   >
-                    <FiLink size={18} />
-                  </a>
+                    {copied === i ? "✔" : <FiCopy size={18} />}
+                  </button>
                 </div>
               </div>
             </div>
