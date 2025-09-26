@@ -4,17 +4,17 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
-interface BlogPostProps {
-  params: {
-    slug: string;
-  };
-}
-
-export default async function BlogPost({ params }: BlogPostProps) {
+export default async function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
 
   // Make sure path matches your folder structure
-  const filePath = path.join(process.cwd(), "app", "Blog", "post", `${slug}.md`);
+  const filePath = path.join(
+    process.cwd(),
+    "app",
+    "Blog",
+    "post",
+    `${slug}.md`
+  );
 
   // Read markdown file
   const fileContent = fs.readFileSync(filePath, "utf8");
