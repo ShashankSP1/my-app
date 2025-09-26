@@ -44,7 +44,7 @@ export default function Nav() {
           </li>
           <li>
             <button className={` cursor-pointer rounded-3xl px-4 py-2 ${theme === "dark" ? 'hover:bg-blue-900' : 'hover:bg-gray-300'}`}>
-              <Link href="/Collaboration">Collaboration</Link>
+              <Link href="/Blog">Blog</Link>
             </button>
           </li>
           <li>
@@ -108,11 +108,11 @@ export default function Nav() {
           </li>
           <li>
             <Link
-              href="/Collaboration"
+              href="/Blog"
               onClick={toggleMenu}
               className="hover:bg-purple-400 rounded-3xl px-4 py-2 block"
             >
-              Collaboration
+              Blog
             </Link>
           </li>
           <li>
