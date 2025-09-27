@@ -6,6 +6,9 @@ const postsDirectory = path.join(process.cwd(), "app/Blog/post");
 
 export function getPostBySlug(slug: string) {
   const fullPath = path.join(postsDirectory, `${slug}.md`);
+  if (!fs.existsSync(fullPath)) {
+    throw new Error(`Post file not found for slug: ${slug}`);
+  }
   const fileContents = fs.readFileSync(fullPath, "utf8");
   const { data, content } = matter(fileContents);
   return {
