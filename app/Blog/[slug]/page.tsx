@@ -4,8 +4,8 @@ import matter from "gray-matter";
 import { remark } from "remark";
 import html from "remark-html";
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { slug } = params;
+export default async function Page(props: any) {
+  const { slug } = props.params;
 
   // Make sure path matches your folder structure
   const filePath = path.join(
