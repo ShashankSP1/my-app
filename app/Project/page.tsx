@@ -27,7 +27,7 @@ const works = [
     description:
       "Training center website for networking certifications with course details and enrollment features.",
     img: "/training-center.jpeg",
-    link: "https://www.pexels.com/search/website%20background/",
+    link: "https://ccielab.net/",
   },
   {
     id: 4,
@@ -53,23 +53,16 @@ const works = [
     img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&w=1000&q=80",
     link: "https://www.pexels.com/search/website%20background/",
   },
-  {
-    id: 7,
-    title: "Coming Soon",
-    description: "Future project with innovative solutions. Launching soon.",
-    img: "https://images.unsplash.com/photo-1557683316-973673baf926?ixlib=rb-4.0.3&w=1000&q=80",
-    link: "https://www.pexels.com/search/website%20background/",
-  },
 ];
 
 export default function Project() {
   const { theme, setTheme } = useTheme();
   const [isPaused, setIsPaused] = useState(false);
-  const [copied, setCopied] = useState<number | null>(null); // track which index is copied
+  const [copied, setCopied] = useState<number | null>(null);
 
   const handleCopy = (link: string, index: number) => {
     navigator.clipboard.writeText(link);
-    setCopied(index); 
+    setCopied(index);
     setTimeout(() => setCopied(null), 2000);
   };
 
@@ -145,9 +138,14 @@ export default function Project() {
                 <p className="text-sm mt-1 text-center">{work.description}</p>
 
                 <div className="flex gap-4 mt-4">
-                  <button className="bg-white text-black cursor-pointer px-4 py-2 rounded-full text-sm hover:bg-gray-200">
+                  <a
+                    href={work.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-white text-black cursor-pointer px-4 py-2 rounded-full text-sm hover:bg-gray-200 transition"
+                  >
                     View Project
-                  </button>
+                  </a>
                   <button
                     onClick={() => handleCopy(work.link, i)}
                     className="w-10 h-10 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition"
