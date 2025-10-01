@@ -68,17 +68,17 @@ export default function Project() {
 
   return (
     <div
-      className={`min-h-screen mt-14 bg-gradient-to-b flex flex-col items-center ${
+      className={`min-h-screen mt-14 bg-gradient-to-b flex flex-col items-center px-2 sm:px-4 md:px-8 ${
         theme === "dark"
           ? "from-purple-900 to-slate-950"
           : "from-sky-200 to-sky-400"
       } `}
     >
       {/* Section Title */}
-      <section className="text-center my-10 px-6">
-        <h2 className="text-4xl font-serif font-bold">My Projects</h2>
+      <section className="text-center my-8 sm:my-10 px-2 sm:px-6 w-full max-w-5xl">
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold">My Projects</h2>
         <p
-          className={`mt-2 max-w-2xl mx-auto ${
+          className={`mt-2 max-w-2xl mx-auto text-sm sm:text-base md:text-lg ${
             theme === "dark" ? "text-gray-300" : "text-gray-700"
           }`}
         >
@@ -90,7 +90,7 @@ export default function Project() {
       </section>
 
       <div
-        className={`absolute top-1/3 right-4 -translate-y-1/2 flex flex-col shadow-lg rounded-xl p-2 backdrop-blur-2xl ${
+        className={`fixed z-20 top-4 right-4 sm:top-1/3 sm:right-4 sm:-translate-y-1/2 flex flex-col shadow-lg rounded-xl p-2 backdrop-blur-2xl ${
           theme === "dark" ? " bg-purple-700" : "bg-blue-500"
         }`}
       >
@@ -119,38 +119,38 @@ export default function Project() {
         )}
       </div>
 
-      <div className="relative w-full overflow-hidden py-10">
-        <div className={`flex gap-6 w-max  ${isPaused ? "" : "marquee"}`}>
+      <div className="relative w-full overflow-x-auto py-6 sm:py-10">
+        <div className={`flex gap-4 sm:gap-6 w-max ${isPaused ? "" : "marquee"}`}>
           {[...works, ...works].map((work, i) => (
             <div
               key={i}
-              className="relative min-w-[280px] max-w-sm flex-shrink-0 rounded-3xl overflow-hidden shadow-lg group"
+              className="relative min-w-[220px] sm:min-w-[280px] max-w-xs sm:max-w-sm flex-shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg group"
             >
               <img
                 src={work.img}
                 alt={work.title}
-                className="w-full h-96 object-cover"
+                className="w-full h-40 sm:h-60 md:h-80 object-cover"
               />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-4">
-                <h3 className="text-lg font-semibold text-amber-300">
+              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 sm:p-4">
+                <h3 className="text-base sm:text-lg font-semibold text-amber-300">
                   {work.title}
                 </h3>
-                <p className="text-sm mt-1 text-center">{work.description}</p>
+                <p className="text-xs sm:text-sm mt-1 text-center">{work.description}</p>
 
-                <div className="flex gap-4 mt-4">
+                <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4 w-full items-center justify-center">
                   <a
                     href={work.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="bg-white text-black cursor-pointer px-4 py-2 rounded-full text-sm hover:bg-gray-200 transition"
+                    className="bg-white text-black cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm hover:bg-gray-200 transition w-full sm:w-auto text-center"
                   >
                     View Project
                   </a>
                   <button
                     onClick={() => handleCopy(work.link, i)}
-                    className="w-10 h-10 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition"
+                    className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition"
                   >
-                    {copied === i ? "✔" : <FiCopy size={18} />}
+                    {copied === i ? "✔" : <FiCopy size={16} />}
                   </button>
                 </div>
               </div>

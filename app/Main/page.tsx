@@ -34,32 +34,44 @@ const Main = () => {
   }, []);
   return (
     <>
-      <div className="flex flex-col z-10 md:flex-row items-center justify-center min-h-screen px-4 py-10">
+      <div
+        className="flex flex-col z-10 md:flex-row items-center justify-center min-h-screen px-4 py-10"
+        style={{
+          background:
+            theme === "dark"
+              ? "linear-gradient(135deg, #1e3a8a, #7e22ce, #8b5cf6)"
+              : "linear-gradient(135deg, #dbeafe, #ddd6fe, #fbcfe8)",
+        }}
+      >
         {/* Left Image */}
         <div className="md:w-1/2 mb-8 md:mb-0 flex justify-center">
           <img
             src="/professional_image.png"
             alt="Profile"
-            className="rounded-[40px] w-[300px] md:w-[400px] object-cover mt-10"
+            className="rounded-[40px] w-[260px] sm:w-[300px] md:w-[400px] object-cover mt-10 border-2 border-blue-300 dark:border-fuchsia-700 shadow-xl hover:shadow-blue-400/40 dark:hover:shadow-fuchsia-400/40 transition-all duration-300 hover:scale-105"
           />
         </div>
 
         {/* Right Content */}
         <div className="md:w-1/2 flex flex-col items-start md:items-start text-center md:text-left px-4">
           <h1
-            className={`text-4xl md:text-5xl font-bold mb-6 ${
-              theme === "dark" ? "text-cyan-400" : "text-cyan-800"
+            className={`text-4xl md:text-5xl font-bold font-sans mb-6 drop-shadow-lg transition-colors duration-300 ${
+              theme === "dark" ? "text-fuchsia-200" : "text-gray-800"
             }`}
           >
             Shashank S P
           </h1>
 
-          <p className="text-lg leading-relaxed mb-6 max-w-xl">
+          <p
+            className={`text-lg leading-relaxed mb-6 max-w-xl ${
+              theme === "dark" ? "text-gray-100" : "text-gray-900"
+            }`}
+          >
             I am a passionate and results-driven{" "}
             <span
               id="element"
-              className={`${
-                theme === "dark" ? "text-blue-400" : "text-blue-800"
+              className={`font-bold ${
+                theme === "dark" ? "text-amber-400" : "text-blue-700"
               }`}
             ></span>
             <br />
@@ -75,21 +87,24 @@ const Main = () => {
             {/* Preview Trigger Button */}
             <button
               onClick={() => setIsOpen(true)}
-              className="bg-blue-600 hover:bg-blue-700 cursor-pointer transition-all text-white font-bold py-3 px-6 rounded-lg shadow-lg border border-blue-400"
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-300 cursor-pointer bg-green-600 hover:bg-green-700 text-white outline-orange-50`}
             >
               My Resume
             </button>
 
             {/* Modal */}
             {isOpen && (
-              <div className="fixed inset-0 bg-black/30 backdrop-blur-sm flex items-center justify-center z-50">
-                <div className="bg-white p-4 rounded-lg shadow-lg w-[80%] max-w-xl">
+              <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
+                <div className="bg-white dark:bg-gray-900 p-6 rounded-2xl shadow-2xl w-[90%] max-w-xl border border-blue-200 dark:border-fuchsia-900">
                   {/* Close Button */}
                   <div className="flex justify-between items-center mb-4">
-                    <h2 className="text-xl font-bold">Resume Preview</h2>
+                    <h2 className="text-xl font-extrabold text-blue-900 dark:text-fuchsia-200">
+                      Resume Preview
+                    </h2>
                     <button
                       onClick={() => setIsOpen(false)}
-                      className="text-gray-600 cursor-pointer hover:text-gray-900 text-lg font-bold"
+                      className="text-gray-600 dark:text-gray-300 cursor-pointer hover:text-red-500 text-2xl font-bold transition-colors"
+                      aria-label="Close resume preview"
                     >
                       ✕
                     </button>
@@ -99,7 +114,7 @@ const Main = () => {
                   <iframe
                     src="/Shashank_SP_Resume.pdf"
                     title="Resume Preview"
-                    className="w-full h-[400px] border rounded"
+                    className="w-full h-[400px] border rounded-lg shadow"
                   ></iframe>
 
                   {/* Download Button */}
@@ -107,7 +122,7 @@ const Main = () => {
                     <a
                       href="/Shashank_SP_Resume.pdf"
                       download
-                      className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+                      className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-colors"
                     >
                       Download
                     </a>

@@ -43,7 +43,7 @@ const exp = () => {
 
   let years = today.getFullYear() - startDate.getFullYear();
   let months = today.getMonth() - startDate.getMonth();
- 
+
   if (months < 0) {
     years--;
     months += 12;
@@ -63,13 +63,48 @@ const about = () => {
     { src: "/node.js.png", alt: "Node.js" },
     { src: "/postgres.webp", alt: "PostGreSQL" },
     { src: "/javascript.png", alt: "JavaScript" },
-    { src: `${theme === "dark" ? '/github.svg' : '/github.png'}`, alt: "Git" },
-    { src: `${theme === "dark" ? '/express.js.png': '/expressjs.png'}` , alt: "Express.js" },
+    { src: `${theme === "dark" ? "/github.svg" : "/github.png"}`, alt: "Git" },
+    {
+      src: `${theme === "dark" ? "/express.js.png" : "/expressjs.png"}`,
+      alt: "Express.js",
+    },
     { src: "/IntelliJ_IDEA.png", alt: "Intellij_IDEA" },
     { src: "/vscode.png", alt: "VS Code" },
-    { src: `${theme === "dark" ? '/jQuery-dark.png': '/jQuery.png'}` , alt: "Express.js" },
+    {
+      src: `${theme === "dark" ? "/jQuery-dark.png" : "/jQuery.png"}`,
+      alt: "Express.js",
+    },
     { src: "/postman-logo.png", alt: "Postman" },
-    { src: "/gitlab.png", alt: "GitLab" }
+    { src: "/gitlab.png", alt: "GitLab" },
+  ];
+
+  const experiences = [
+    {
+      role: "Junior Software Engineer",
+      company: "Zeksta Technology Pvt Ltd",
+      duration: "March 2025 - Present",
+      description: [
+        "Building scalable web apps using React, Node.js, Express, and MongoDB.",
+        "Worked on complaint management system, recipient form, and UI responsiveness.",
+        "Collaborated with team in an Agile environment to deliver features.",
+      ],
+    },
+    {
+      role: "Freelance Web Developer",
+      company: "FreeLancer",
+      duration: "September 2025 - Present",
+      description: [
+        "Developed and customized websites for small businesses.",
+        "Ensured responsive design and SEO optimization.",
+      ],
+    },
+    {
+      role: "Java Full Stack Trainee",
+      company: "Training Program",
+      duration: "June 2023 - September 2023",
+      description:
+        "Completed 4-month Java Full Stack course (Core Java, HTML, CSS, JavaScript and MySQL) and built simple projects.",
+    },
   ];
 
   const repeatedLogos = [...skills, ...skills];
@@ -180,16 +215,19 @@ const about = () => {
             </li>
             <li className="flex items-center gap-2">
               <FaLanguage className="text-blue-600" />{" "}
-              <span className="font-semibold">Languages:</span>Kannada, English, and Hindi
-            </li> 
+              <span className="font-semibold">Languages:</span>Kannada, English,
+              and Hindi
+            </li>
             <li className="flex items-center gap-2">
               <FaLaptopHouse className="text-green-600" />{" "}
-              <span className="font-semibold">Open to:</span>Remote roles and freelance projects
-            </li>  
+              <span className="font-semibold">Open to:</span>Remote roles and
+              freelance projects
+            </li>
             <li className="flex items-center gap-2">
               <FaLightbulb className="text-yellow-400" />{" "}
-              <span className="font-semibold">Interests:</span>Web Development, Coding, DevOps
-            </li>       
+              <span className="font-semibold">Interests:</span>Web Development,
+              Coding, DevOps
+            </li>
           </ul>
         </div>
       </div>
@@ -211,6 +249,92 @@ const about = () => {
                 alt={skill.alt}
                 className="h-12 w-12 object-contain"
               />
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Experience Section */}
+      <div id="experience" className="py-20">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2
+            className={`text-3xl font-bold mb-12 text-center drop-shadow-lg ${
+              theme === "dark" ? "text-fuchsia-100" : "text-blue-900"
+            }`}
+          >
+            Experience
+          </h2>
+
+          <div
+            className={`relative border-l-8 pl-8 space-y-12 ${
+              theme === "dark" ? "border-fuchsia-700" : "border-green-400"
+            }`}
+          >
+            {experiences.map((exp, index) => (
+              <div key={index} className="relative group">
+                {/* Timeline dot */}
+                <div
+                  className={`absolute -left-12 -top-0.5 w-6 h-6 rounded-full border-4 ${
+                    theme === "dark"
+                      ? "bg-fuchsia-700 border-fuchsia-300"
+                      : "bg-green-400 border-green-100"
+                  }`}
+                ></div>
+
+                {/* Content */}
+                <div
+                  className={`p-8 rounded-2xl shadow-xl border transition-colors duration-300 ${
+                    theme === "dark"
+                      ? "bg-gray-900/90 border-purple-900"
+                      : "bg-white/90 border-blue-200"
+                  }`}
+                >
+                  <h3
+                    className={`text-xl font-bold group-hover:text-blue-600 transition-colors duration-200 ${
+                      theme === "dark"
+                        ? "group-hover:text-fuchsia-400 text-fuchsia-100"
+                        : "text-blue-900"
+                    }`}
+                  >
+                    {exp.role}
+                  </h3>
+                  <p
+                    className={`mb-2 font-semibold ${
+                      theme === "dark" ? "text-fuchsia-100" : "text-blue-900"
+                    }`}
+                  >
+                    {exp.company}
+                  </p>
+                  <span
+                    className={`inline-block px-3 py-1 rounded-full text-xs font-bold mb-2 shadow ${
+                      theme === "dark"
+                        ? "bg-fuchsia-900/60 text-fuchsia-200"
+                        : "bg-green-100 text-green-700"
+                    }`}
+                  >
+                    {exp.duration}
+                  </span>
+                  {Array.isArray(exp.description) ? (
+                    <ul
+                      className={`list-disc ml-5 ${
+                        theme === "dark" ? "text-gray-200" : "text-gray-700"
+                      }`}
+                    >
+                      {exp.description.map((item, i) => (
+                        <li key={i}>{item}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p
+                      className={`${
+                        theme === "dark" ? "text-gray-200" : "text-gray-700"
+                      }`}
+                    >
+                      {exp.description}
+                    </p>
+                  )}
+                </div>
+              </div>
             ))}
           </div>
         </div>
