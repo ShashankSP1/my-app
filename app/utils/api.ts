@@ -1,4 +1,5 @@
-// utils/api.ts
+import emailjs from "@emailjs/browser";
+
 export const sendEmail = async (formData: {
   name: string;
   email: string;
@@ -6,22 +7,19 @@ export const sendEmail = async (formData: {
   message: string;
 }) => {
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/send-email`,
+    const result = await emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
       {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          to: "shashankshiva6361@gmail.com",
-          subject: formData.subject,
-          text: `From: ${formData.name} <${formData.email}>\n\n${formData.message}`,
-        }),
-      }
+        from_name: formData.name,
+        reply_to: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
     );
-
-    const data = await res.json();
-    return { ok: res.ok, data };
+    return { ok: true, data: { message: "Email sent successfully!" } };
   } catch (error: any) {
-    return { ok: false, error: error.message };
+    return { ok: false, error: error.text || error.message };
   }
 };
