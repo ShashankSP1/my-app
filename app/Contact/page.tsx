@@ -1,7 +1,7 @@
 "use client";
 import { FaGithub, FaLinkedin, FaEnvelope, FaTwitter } from "react-icons/fa";
 import React, { useState } from "react";
-import { sendEmail } from "../utils/api"; // ✅ using our helper
+import { sendEmail } from "../utils/api";
 import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 
@@ -29,13 +29,14 @@ export default function Contact() {
     e.preventDefault();
     setStatus("Sending...");
 
+    // ✅ Directly use EmailJS helper
     const { ok, data, error } = await sendEmail(formData);
 
     if (ok) {
       Swal.fire({
         icon: "success",
-        title: "Your message has been sent successfully",
-        text: data.message,
+        title: "Message Sent!",
+        text: data?.message || "Message sent!",
         confirmButtonColor: "#2563eb",
       });
       setStatus("");
@@ -44,7 +45,7 @@ export default function Contact() {
       Swal.fire({
         icon: "error",
         title: "Oops...",
-        text: error || data?.error,
+        text: error || data?.message || "Something went wrong.",
       });
       setStatus("");
     }
@@ -74,11 +75,13 @@ export default function Contact() {
             Have a project in mind or just want to say hi? Fill out the form
             below.
           </p>
+
+          {/* ✅ FORM SECTION */}
           <form className="space-y-4" onSubmit={handleSubmit}>
             <input
               type="text"
-              placeholder="Your Name"
               name="name"
+              placeholder="Your Name"
               value={formData.name}
               onChange={handleChange}
               required
@@ -129,14 +132,13 @@ export default function Contact() {
           </form>
         </div>
 
-        {/* Right Side - Contact Info & Map */}
+        {/* Right Side - Info & Socials */}
         <div
           className={`${
             theme === "dark" ? "bg-gray-800" : "bg-white"
           } shadow-lg rounded-2xl p-6 flex flex-col gap-6`}
         >
           <h2 className="text-2xl font-bold">Get in Touch</h2>
-          {/* Google Map */}
           <div className="w-full h-72 rounded-lg overflow-hidden">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d13081.610284027563!2d77.6216994782562!3d12.89575801197963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae14bc1f875dd5%3A0x2b126387f21954a7!2sGarvebhavi%20Palya%2C%20Bengaluru%2C%20Karnataka!5e0!3m2!1sen!2sin!4v1756386216861!5m2!1sen!2sin"
@@ -154,7 +156,6 @@ export default function Contact() {
               560068
             </p>
           </div>
-          {/* Social Media */}
           <div>
             <h1 className="text-2xl gap-5">Connect with me</h1>
             <div className="flex gap-4 pt-2">
@@ -162,7 +163,6 @@ export default function Contact() {
                 href="https://github.com/shashanksp1"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GitHub"
                 className="hover:text-gray-500"
               >
                 <FaGithub size={28} />
@@ -171,7 +171,6 @@ export default function Contact() {
                 href="https://linkedin.com/in/shashankshiva6361"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn"
                 className="hover:text-blue-700"
               >
                 <FaLinkedin size={28} />
@@ -179,7 +178,6 @@ export default function Contact() {
               <a
                 href="mailto:shashankshiva6361@gmail.com"
                 className="hover:text-red-600"
-                aria-label="Email"
               >
                 <FaEnvelope size={28} />
               </a>
@@ -187,7 +185,6 @@ export default function Contact() {
                 href="https://twitter.com/shashanksp1"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Twitter"
                 className="hover:text-blue-400"
               >
                 <FaTwitter size={28} />

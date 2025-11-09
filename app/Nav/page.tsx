@@ -86,7 +86,7 @@ export default function Nav() {
           onClick={toggleMenu}
           aria-label={isOpen ? "Close menu" : "Open menu"}
         >
-          {isOpen ? <FaTimes className="text-gray-200 dark:text-white" /> : <FaBars className="text-blue-900 dark:text-white" />}
+          {isOpen ? <FaTimes className={` ${theme === 'dark' ? 'text-gray-100':'text-black'}`} /> : <FaBars className={`text-blue-900 ${theme === 'dark' ? 'text-white':'text-black'}`} />}
         </div>
       </div>
 
