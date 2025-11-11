@@ -6,13 +6,12 @@ import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 
 export default function Nav() {
+  const { theme, setTheme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
   const pathname = usePathname();
 
   useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
 
   useEffect(() => {
     if (isOpen) {
@@ -22,6 +21,7 @@ export default function Nav() {
     }
   }, [isOpen]);
   const toggleMenu = () => setIsOpen(!isOpen);
+  if (!mounted) return null;
 
   return (
     <nav>
