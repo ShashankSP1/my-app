@@ -7,7 +7,7 @@ import { FiCopy } from "react-icons/fi";
 const works = [
   {
     id: 1,
-    title: "Villagepepro (Group Project)",
+    title: "Villagepepro",
     description:
       "A fintech platform for seamless payments, wallet integration, and transaction management.",
     img: "/gmax-fintech.jpg",
@@ -15,7 +15,7 @@ const works = [
   },
   {
     id: 2,
-    title: "Neuva Life Sciences (Group Project)",
+    title: "Neuva Life Sciences",
     description:
       "Website for a baby care products company, showcasing their product range and e-commerce features.",
     img: "/baby_image.jpg",
@@ -23,7 +23,7 @@ const works = [
   },
   {
     id: 3,
-    title: "CCIE Labs (Group Project)",
+    title: "CCIE Labs",
     description:
       "Training center website for networking certifications with course details and enrollment features.",
     img: "/training-center.jpeg",
@@ -31,7 +31,7 @@ const works = [
   },
   {
     id: 4,
-    title: "Home Pitara (Group Project)",
+    title: "Home Pitara",
     description:
       "A real estate project that helps users discover, compare, and connect with property listings.",
     img: "/Home-image.jpeg",
@@ -39,11 +39,11 @@ const works = [
   },
   {
     id: 5,
-    title: "Coming Soon",
+    title: "Samgamam Banking Solutions",
     description:
-      "Exciting new project under development. Stay tuned for updates.",
-    img: "https://images.unsplash.com/photo-1522199710521-72d69614c702?ixlib=rb-4.0.3&w=1000&q=80",
-    link: "https://www.pexels.com/search/website%20background/",
+      "A cooperative banking web platform enabling digital account, deposit, and fund management.",
+    img: "cooperative_bank.jpg",
+    link: "#",
   },
   {
     id: 6,
