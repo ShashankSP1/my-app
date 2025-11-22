@@ -1,5 +1,5 @@
 "use client";
-import { FaGithub, FaLinkedin, FaEnvelope, FaTwitter } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaTwitter, FaInstagram } from "react-icons/fa";
 import React, { useState } from "react";
 import { sendEmail } from "../utils/api";
 import { useTheme } from "next-themes";
@@ -165,7 +165,7 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="hover:text-gray-500"
               >
-                <FaGithub size={28} />
+                <FaGithub size={20} />
               </a>
               <a
                 href="https://linkedin.com/in/shashankshiva6361"
@@ -173,21 +173,29 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 className="hover:text-blue-700"
               >
-                <FaLinkedin size={28} />
+                <FaLinkedin size={20} />
               </a>
               <a
                 href="mailto:shashankshiva6361@gmail.com"
                 className="hover:text-red-600"
               >
-                <FaEnvelope size={28} />
+                <FaEnvelope size={20} />
               </a>
               <a
-                href="https://twitter.com/shashanksp1"
+                href="https://x.com/shashankshivap"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-blue-400"
               >
-                <FaTwitter size={28} />
+                <FaTwitter size={20} />
+              </a>
+              <a
+                href="https://www.instagram.com/shashank__s_____/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-500"
+              >
+                <FaInstagram size={20} />
               </a>
             </div>
           </div>

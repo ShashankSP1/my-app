@@ -39,7 +39,7 @@ const Main = () => {
         style={{
           background:
             theme === "dark"
-              ? "linear-gradient(135deg, #1e3a8a, #7e22ce, #8b5cf6)"
+              ? "linear-gradient(135deg, rgba(0,0,0,0.7))"
               : "linear-gradient(135deg, #dbeafe, #ddd6fe, #fbcfe8)",
         }}
       >
@@ -54,14 +54,18 @@ const Main = () => {
 
         {/* Right Content */}
         <div className="md:w-1/2 flex flex-col items-start md:items-start text-center md:text-left px-4">
-          <h1
-            className={`text-4xl md:text-5xl font-bold font-sans mb-6 drop-shadow-lg transition-colors duration-300 ${
-              theme === "dark" ? "text-fuchsia-200" : "text-gray-800"
-            }`}
-          >
-            Shashank S P
+          <h1 className="text-3xl md:text-4xl mb-4 font-medium">
+            Hello I'm 
+            <span
+              className={`text-3xl md:text-4xl font-medium bg-clip-text ml-2 text-transparent drop-shadow-[0_0_10px_rgba(255,0,255,0.4)] ${
+                theme === "dark"
+                  ? "bg-gradient-to-r from-purple-500 via-pink-500 to-fuchsia-500"
+                  : "bg-gradient-to-r from-blue-700 via-yellow-500 to-red-500 "
+              }`}
+            >
+              Shashank S P
+            </span>
           </h1>
-
           <p
             className={`text-lg leading-relaxed mb-6 max-w-xl ${
               theme === "dark" ? "text-gray-100" : "text-gray-900"
@@ -122,7 +126,7 @@ const Main = () => {
                     <a
                       href="/Shashank_SP_Resume.pdf"
                       download
-                      className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-colors"
+                      className="bg-transparent backdrop:backdrop-blur-2xl hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-md transition-colors"
                     >
                       Download
                     </a>
