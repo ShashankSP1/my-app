@@ -1,10 +1,9 @@
 "use client";
 import React, { useState } from "react";
 import { useTheme } from "next-themes";
-import { FaPause, FaPlay } from "react-icons/fa";
 import { FiCopy } from "react-icons/fi";
 
-const works = [
+const projects = [
   {
     id: 1,
     title: "Villagepepro",
@@ -67,96 +66,85 @@ export default function Project() {
   };
 
   return (
-    <div
-      className={`min-h-screen mt-14 bg-gradient-to-b flex flex-col items-center px-2 sm:px-4 md:px-8 ${
-        theme === "dark"
-          ? "from-purple-900 to-slate-950"
-          : "from-sky-200 to-sky-400"
-      } `}
-    >
-      {/* Section Title */}
-      <section className="text-center my-8 sm:my-10 px-2 sm:px-6 w-full max-w-5xl">
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold">My Projects</h2>
-        <p
-          className={`mt-2 max-w-2xl mx-auto text-sm sm:text-base md:text-lg ${
-            theme === "dark" ? "text-gray-300" : "text-gray-700"
-          }`}
-        >
-          Explore a showcase of projects I have worked on — including fintech
-          applications, e-commerce platforms, training center websites, and real
-          estate solutions. These works highlight my skills in React, Node.js,
-          and full-stack development while solving real-world problems.
-        </p>
-      </section>
-
-      <div
-        className={`fixed z-20 top-4 right-4 sm:top-1/3 sm:right-4 sm:-translate-y-1/2 flex flex-col shadow-lg rounded-xl p-2 backdrop-blur-2xl ${
-          theme === "dark" ? " bg-purple-700" : "bg-blue-500"
-        }`}
+    <div className="relative min-h-screen mt-14 overflow-hidden">
+      {/* Background Video */}
+      <video
+      key={theme}
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
       >
-        {isPaused ? (
-          <button
-            onClick={() => setIsPaused(false)}
-            className={`p-2 rounded-lg transition cursor-pointer ${
-              theme === "dark"
-                ? "bg-purple-700 hover:border-amber-50"
-                : "bg-blue-500 hover:border-amber-50"
+        <source src={theme === "dark" ? "/project-bg-dark-compressed.mp4" : "/project-bg-light.mp4"} type="video/mp4" />
+      </video>
+
+      {/* Overlay */}
+      <div
+        className={`absolute inset-0 
+      ${theme === "dark" ? "bg-black/50" : "bg-white/50"} 
+      backdrop-blur-sm`}
+      ></div>
+
+      {/* Actual Page Content */}
+      <div className="relative z-10 px-2 sm:px-4 md:px-8 flex flex-col items-center">
+        {/* Section Title */}
+        <section className="text-center my-8 sm:my-10 w-full max-w-5xl">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold">
+            My Projects
+          </h2>
+          <p
+            className={`mt-2 max-w-2xl mx-auto text-sm sm:text-base md:text-lg ${
+              theme === "dark" ? "text-gray-300" : "text-gray-700"
             }`}
           >
-            <FaPlay className="text-gray-200" />
-          </button>
-        ) : (
-          <button
-            onClick={() => setIsPaused(true)}
-            className={`p-2 rounded-lg transition cursor-pointer ${
-              theme === "dark"
-                ? "bg-purple-700 hover:border-amber-50"
-                : "bg-blue-500 hover:border-amber-50"
-            }`}
-          >
-            <FaPause className="text-gray-200" />
-          </button>
-        )}
-      </div>
+            Explore a showcase of projects I have worked on — including fintech
+            applications, e-commerce platforms, training center websites, and
+            real estate solutions.
+          </p>
+        </section>
 
-      <div className="relative w-full overflow-x-auto py-6 sm:py-10">
-        <div className={`flex gap-4 sm:gap-6 w-max ${isPaused ? "" : "marquee"}`}>
-          {[...works, ...works].map((work, i) => (
-            <div
-              key={i}
-              className="relative min-w-[220px] sm:min-w-[280px] max-w-xs sm:max-w-sm flex-shrink-0 rounded-2xl sm:rounded-3xl overflow-hidden shadow-lg group"
-            >
-              <img
-                src={work.img}
-                alt={work.title}
-                className="w-full h-40 sm:h-60 md:h-80 object-cover"
-              />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center text-white p-2 sm:p-4">
-                <h3 className="text-base sm:text-lg font-semibold text-amber-300">
-                  {work.title}
-                </h3>
-                <p className="text-xs sm:text-sm mt-1 text-center">{work.description}</p>
+        {/* Project Cards */}
+        <section className="px-4 md:px-10 pb-10 w-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((p, i) => (
+              <div
+                key={p.title}
+                className="bg-white/70 dark:bg-black/40 backdrop-blur-lg 
+            rounded-2xl shadow-lg p-4 border 
+            border-gray-200 dark:border-gray-700 
+            hover:scale-105 transition"
+              >
+                <img
+                  src={p.img}
+                  alt={p.title}
+                  className="rounded-xl w-full h-48 object-cover"
+                />
+                <h2 className="text-xl font-semibold mt-4">{p.title}</h2>
+                <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 line-clamp-4">
+                  {p.description}
+                </p>
 
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-4 w-full items-center justify-center">
+                <div className="flex gap-3 mt-4">
                   <a
-                    href={work.link}
+                    href={p.link}
                     target="_blank"
-                    rel="noopener noreferrer"
-                    className="bg-white text-black cursor-pointer px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm hover:bg-gray-200 transition w-full sm:w-auto text-center"
+                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
                   >
-                    View Project
+                    Live Demo
                   </a>
+
                   <button
-                    onClick={() => handleCopy(work.link, i)}
-                    className="w-8 h-8 sm:w-10 sm:h-10 flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition"
+                    onClick={() => handleCopy(p.link, i)}
+                    className="w-8 h-8 sm:w-10 sm:h-10 cursor-pointer flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition"
                   >
                     {copied === i ? "✔" : <FiCopy size={16} />}
                   </button>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        </section>
       </div>
     </div>
   );

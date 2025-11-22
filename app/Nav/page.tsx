@@ -62,8 +62,8 @@ export default function Nav() {
               <button
                 className={`text-sm lg:text-base cursor-pointer rounded-3xl px-3 py-1.5 lg:px-4 lg:py-2 transition-colors duration-200 ${
                   theme === "dark"
-                    ? "hover:bg-blue-900/80"
-                    : "hover:bg-gray-300/80"
+                    ? "hover:bg-blue-900/60 hover:text-white"
+                    : "hover:bg-blue-100 hover:text-blue-700"
                 }
                 ${
                   pathname === "/About"
@@ -80,8 +80,8 @@ export default function Nav() {
               <button
                 className={`text-sm lg:text-base cursor-pointer rounded-3xl px-3 py-1.5 lg:px-4 lg:py-2 transition-colors duration-200 ${
                   theme === "dark"
-                    ? "hover:bg-blue-900/80"
-                    : "hover:bg-gray-300/80"
+                    ? "hover:bg-blue-900/60 hover:text-white"
+                    : "hover:bg-blue-100 hover:text-blue-700"
                 }
                 ${
                   pathname === "/Project"
@@ -98,8 +98,8 @@ export default function Nav() {
               <button
                 className={`text-sm lg:text-base cursor-pointer rounded-3xl px-3 py-1.5 lg:px-4 lg:py-2 transition-colors duration-200 ${
                   theme === "dark"
-                    ? "hover:bg-blue-900/80"
-                    : "hover:bg-gray-300/80"
+                    ? "hover:bg-blue-900/60 hover:text-white"
+                    : "hover:bg-blue-100 hover:text-blue-700"
                 }
                 ${
                   pathname === "/Blog"
@@ -116,8 +116,8 @@ export default function Nav() {
               <button
                 className={`text-sm lg:text-base cursor-pointer rounded-3xl px-3 py-1.5 lg:px-4 lg:py-2 transition-colors duration-200 ${
                   theme === "dark"
-                    ? "hover:bg-blue-900/80"
-                    : "hover:bg-gray-300/80"
+                    ? "hover:bg-blue-900/60 hover:text-white"
+                    : "hover:bg-blue-100 hover:text-blue-700"
                 }
                 ${
                   pathname === "/Contact"

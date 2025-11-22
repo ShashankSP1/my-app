@@ -39,3 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+"public/project-bg-dark.mp4" 
+public/project-bg-dark.mp4 
