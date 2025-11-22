@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaInstagram } from "react-icons/fa";
 
 const Footer = () => {
   const [mounted, setMounted] = useState(false);
@@ -105,7 +105,7 @@ const Footer = () => {
                 href="https://github.com/ShashankSP1"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={` ${theme==="dark" ? 'hover:text-white':'hover:text-black'}`}
+                className="hover:text-gray-500"
               >
                 <FaGithub />
               </a>
@@ -113,23 +113,31 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/shashankshiva6361"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={` ${theme==="dark" ? 'hover:text-white':'hover:text-blue-600'}`}
+                className="hover:text-blue-700"
               >
                 <FaLinkedin />
               </a>
               <a
                 href="mailto:shashankshiva6361@gmail.com"
-                className={` ${theme==="dark" ? 'hover:text-white':'hover:text-red-600'}`}
+                className="hover:text-red-600"
               >
                 <FaEnvelope />
               </a>
               <a
-                href="https://twitter.com/yourusername"
+                href="https://x.com/shashankshivap"
                 target="_blank"
                 rel="noopener noreferrer"
-                className={` ${theme==="dark" ? 'hover:text-white':'hover:text-blue-500'}`}
+                className="hover:text-blue-400"
               >
                 <FaTwitter />
+              </a>
+              <a
+                href="https://www.instagram.com/shashank__s_____/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-pink-500"
+              >
+                <FaInstagram />
               </a>
             </div>
           </div>
