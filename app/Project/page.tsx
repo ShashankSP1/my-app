@@ -76,7 +76,7 @@ export default function Project() {
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
       >
-        <source src={theme === "dark" ? "/project-bg.mp4" : "/project-bg-light.mp4"} type="video/mp4" />
+        <source src={theme === "dark" ? "/videoproject1.mp4" : "/videoproject1.mp4"} type="video/mp4" />
       </video>
 
       {/* Overlay */}
