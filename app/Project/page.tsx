@@ -65,64 +65,118 @@ export default function Project() {
             {projects.map((p, i) => (
               <div
                 key={p.id}
-                className="bg-white/70 dark:bg-black/40 backdrop-blur-lg 
+                className={`bg-white/70 dark:bg-black/40 backdrop-blur-lg 
             rounded-2xl shadow-lg p-4 border 
             border-gray-200 dark:border-gray-700 
-            hover:scale-105 transition cursor-pointer group"
+            transition group ${
+              p.id === 6
+                ? "cursor-default"
+                : "hover:scale-105 cursor-pointer"
+            }`}
               >
-                <Link href={`/Project/${p.id}`}>
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    className="rounded-xl w-full h-48 object-cover group-hover:opacity-90 transition"
-                  />
-                  <h2 className="text-xl font-semibold mt-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
-                    {p.title}
-                  </h2>
-                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 line-clamp-3">
-                    {p.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {p.techStack.slice(0, 3).map((tech) => (
-                      <span
-                        key={tech}
-                        className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                    {p.techStack.length > 3 && (
-                      <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full">
-                        +{p.techStack.length - 3}
-                      </span>
-                    )}
+                {p.id === 6 ? (
+                  <div>
+                    <img
+                      src={p.img}
+                      alt={p.title}
+                      className="rounded-xl w-full h-48 object-cover opacity-75"
+                    />
+                    <h2 className="text-xl font-semibold mt-4">{p.title}</h2>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 line-clamp-3">
+                      {p.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {p.techStack.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                </Link>
+                ) : (
+                  <Link href={`/Project/${p.id}`}>
+                    <img
+                      src={p.img}
+                      alt={p.title}
+                      className="rounded-xl w-full h-48 object-cover group-hover:opacity-90 transition"
+                    />
+                    <h2 className="text-xl font-semibold mt-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                      {p.title}
+                    </h2>
+                    <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 line-clamp-3">
+                      {p.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {p.techStack.slice(0, 3).map((tech) => (
+                        <span
+                          key={tech}
+                          className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                      {p.techStack.length > 3 && (
+                        <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full">
+                          +{p.techStack.length - 3}
+                        </span>
+                      )}
+                    </div>
+                  </Link>
+                )}
 
                 <div className="flex gap-3 mt-4">
-                  <Link
-                    href={`/Project/${p.id}`}
-                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center transition"
-                  >
-                    View Details
-                  </Link>
-                  {p.link !== "#" && (
+                  {p.id === 6 ? (
+                    <button
+                      disabled
+                      className="flex-1 px-4 py-2 bg-gray-400 dark:bg-gray-600 text-white rounded-lg cursor-not-allowed text-center opacity-50"
+                    >
+                      Coming Soon
+                    </button>
+                  ) : (
+                    <Link
+                      href={`/Project/${p.id}`}
+                      className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center transition"
+                    >
+                      View Details
+                    </Link>
+                  )}
+                  {p.id !== 6 && (
                     <>
-                      <a
-                        href={p.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Live Demo
-                      </a>
+                      {p.link !== "#" ? (
+                        <a
+                          href={p.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Live Demo
+                        </a>
+                      ) : (
+                        <button
+                          disabled
+                          className="px-4 py-2 bg-gray-400 dark:bg-gray-600 text-white rounded-lg cursor-not-allowed opacity-50"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          Live Demo
+                        </button>
+                      )}
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          handleCopy(p.link, i);
+                          if (p.link !== "#") {
+                            handleCopy(p.link, i);
+                          }
                         }}
-                        className="w-10 h-10 cursor-pointer flex items-center justify-center border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                        disabled={p.link === "#"}
+                        className={`w-10 h-10 flex items-center justify-center border border-gray-300 dark:border-gray-600 rounded-full transition ${
+                          p.link === "#"
+                            ? "cursor-not-allowed opacity-50"
+                            : "cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800"
+                        }`}
                       >
                         {copied === i ? "✔" : <FiCopy size={16} />}
                       </button>
