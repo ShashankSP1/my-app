@@ -11,7 +11,7 @@ export default async function Page(props: any) {
   const filePath = path.join(
     process.cwd(),
     "app",
-    "Blog",
+    "Blogs",
     "post",
     `${slug}.md`
   );

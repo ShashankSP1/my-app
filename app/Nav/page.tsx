@@ -107,7 +107,7 @@ export default function Nav() {
                     : ""
                 }`}
               >
-                Blog
+                Blogs
               </button>
             </Link>
           </li>
@@ -260,11 +260,11 @@ export default function Nav() {
           </li>
           <li>
             <Link
-              href="/Blog"
+              href="/Blogs"
               onClick={toggleMenu}
               className="hover:bg-purple-400/80 rounded-3xl px-4 py-2 block text-lg transition-colors duration-200"
             >
-              Blog
+              Blogs
             </Link>
           </li>
           <li>
