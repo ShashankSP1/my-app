@@ -14,9 +14,16 @@ export default function ProjectDetail() {
 
   useEffect(() => {
     const id = parseInt(params.id as string);
+    
+    // Redirect if trying to access project 6 (Coming Soon)
+    if (id === 6) {
+      router.push("/Project");
+      return;
+    }
+    
     const foundProject = projects.find((p) => p.id === id);
     setProject(foundProject || null);
-  }, [params.id]);
+  }, [params.id, router]);
 
   useEffect(() => {
     const handleScroll = () => {
