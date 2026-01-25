@@ -1,87 +1,485 @@
-import React from 'react';
+"use client";
+import React, { useState, useEffect } from "react";
+import Link from "next/link";
 
-const tools = [
-  {
-    category: "🧑‍💻 Development Environment",
-    items: [
-      { name: "Neovim", desc: "Fast, modern, customizable editor with LSP & plugins." },
-      { name: "Wezterm", desc: "GPU-accelerated terminal with Wayland support." },
-      { name: "ZSH", desc: "Smooth command-line navigation with Oh My Zsh." },
-      { name: "Tmux", desc: "Terminal multiplexer for managing multiple sessions." },
-      { name: "Lazygit", desc: "TUI for Git that makes repository management intuitive." },
-    ],
-  },
-  {
-    category: "⚡ Productivity & Utilities",
-    items: [
-      { name: "Bat", desc: "Modern replacement for cat with syntax highlighting." },
-      { name: "Btop++", desc: "Feature-rich system monitor with real-time metrics." },
-      { name: "FZF", desc: "Fuzzy finder for faster navigation across codebases." },
-      { name: "Better Commit", desc: "Ensures consistent and clean Git commit messages." },
-      { name: "Neofetch", desc: "Aesthetic system info tool for your terminal." },
-      { name: "Hyprshot", desc: "Lightweight screenshot tool for documentation." },
-      { name: "Cava", desc: "Terminal-based audio visualizer for fun coding sessions." },
-    ],
-  },
-  {
-    category: "🧪 API & Database Management",
-    items: [
-      { name: "Posting", desc: "Lightweight API testing tool, faster alternative to Postman." },
-      { name: "Harlequin", desc: "Minimalist SQL IDE for efficient querying." },
-    ],
-  },
-  {
-    category: "🎨 Other Essentials",
-    items: [
-      { name: "Nerd Fonts", desc: "Enhanced fonts (Cascadia + Fira) with icons & symbols." },
-    ],
-  },
-];
+export default function PortfolioBlog() {
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-export default function SecondBlog() {
-  return (
-    <div className="max-w-4xl mx-auto px-4 py-10 mt-20">
-      {/* Header */}
-      <h1 className="text-4xl font-bold mb-2 text-gray-900 dark:text-gray-100">
-        My 2025 Stack as a Frontend Developer
-      </h1>
-      <p className="text-sm text-gray-500 mb-6">By Shashank S P · Sept 24, 2025 · 4 min read</p>
+  useEffect(() => {
+    const handleScroll = () => {
+      const totalHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+      const progress = (window.scrollY / totalHeight) * 100;
+      setScrollProgress(progress);
+    };
 
-      {/* Intro */}
-      <div className="prose dark:prose-invert max-w-none mb-10">
-        <p>
-          As a Frontend Developer in 2025, my development workflow is centered around tools that
-          enable me to work faster and more effectively. Let me walk you through the stack I rely
-          on every day.
-        </p>
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const codeBlock = (code: string, language: string) => (
+    <pre className="bg-slate-900 dark:bg-slate-950 rounded-xl p-4 overflow-x-auto my-4 border border-slate-700">
+      <code className="text-sm text-emerald-400 font-mono">{code}</code>
+    </pre>
+  );
+
+  const stepCard = (
+    number: string,
+    title: string,
+    description: string,
+    icon: string
+  ) => (
+    <div className="flex gap-4 p-5 bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl border border-slate-200 dark:border-slate-700/50 hover:border-emerald-300 dark:hover:border-emerald-700 transition-all hover:shadow-lg group">
+      <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-white font-bold text-lg shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
+        {number}
       </div>
-
-      {/* Tools */}
-      {tools.map((section, i) => (
-        <div key={i} className="mb-10">
-          <h2 className="text-2xl font-semibold mb-4">{section.category}</h2>
-          <ul className="space-y-3">
-            {section.items.map((tool, j) => (
-              <li
-                key={j}
-                className="p-4 bg-white dark:bg-gray-800 rounded-xl shadow hover:shadow-md transition"
-              >
-                <h3 className="font-bold text-lg">{tool.name}</h3>
-                <p className="text-gray-600 dark:text-gray-300 text-sm">{tool.desc}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-
-      {/* Closing */}
-      <div className="prose dark:prose-invert max-w-none">
-        <h2>📈 Final Thoughts</h2>
-        <p>
-          The frontend landscape is always evolving. By keeping my stack lean and efficient, I can
-          focus on building high-quality projects without distractions.
-        </p>
+      <div>
+        <h3 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+          <span>{icon}</span> {title}
+        </h3>
+        <p className="text-slate-600 dark:text-slate-400 mt-1">{description}</p>
       </div>
     </div>
+  );
+
+  const techPill = (name: string, color: string) => (
+    <span
+      className={`inline-block px-3 py-1.5 rounded-full text-sm font-medium ${color} transition-transform hover:scale-105`}
+    >
+      {name}
+    </span>
+  );
+
+  return (
+    <>
+      {/* Reading Progress Bar */}
+      <div
+        className="fixed top-0 left-0 h-1 bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 z-50 transition-all duration-150"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-emerald-50 to-cyan-50 dark:from-slate-950 dark:via-emerald-950/20 dark:to-slate-900">
+        {/* Hero Section */}
+        <div className="relative overflow-hidden">
+
+          <div className="relative max-w-4xl mx-auto px-6 pt-24 pb-16">
+            {/* Navigation */}
+            <div className="flex flex-wrap items-center gap-4 mb-8">
+              <Link
+                href="/Blogs"
+                className="inline-flex items-center gap-2 text-emerald-600 dark:text-emerald-400 hover:text-emerald-800 dark:hover:text-emerald-300 transition-colors group"
+              >
+                <svg
+                  className="w-5 h-5 group-hover:-translate-x-1 transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 19l-7-7 7-7"
+                  />
+                </svg>
+                Back to Blogs
+              </Link>
+
+              <span className="inline-block px-4 py-1.5 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-700 dark:text-emerald-300 rounded-full text-sm font-semibold">
+                Portfolio Project
+              </span>
+            </div>
+
+            {/* Title */}
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
+              How I Built My{" "}
+              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+                Portfolio Website
+              </span>{" "}
+              from Scratch
+            </h1>
+
+            {/* Subtitle */}
+            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-8">
+              A deep dive into the design decisions, tech stack, and lessons
+              learned while creating my personal developer portfolio.
+            </p>
+
+            {/* Author Card */}
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                S
+              </div>
+              <div>
+                <p className="font-semibold text-slate-900 dark:text-white">
+                  Shashank S P
+                </p>
+                <p className="text-sm text-slate-500 dark:text-slate-400">
+                  September 22, 2025 · 8 min read
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Content */}
+        <main className="max-w-4xl mx-auto px-6 pb-20">
+          {/* Intro Section */}
+          <section className="bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 shadow-xl shadow-emerald-500/5 border border-emerald-100 dark:border-emerald-900/30 mb-10 -mt-6 relative z-10">
+            <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+              Creating my portfolio was more than just a project—it was my way
+              of showing who I am as a developer. Every color, animation, and
+              component was carefully chosen to represent my journey from a
+              mechanical engineering background to becoming a{" "}
+              <span className="text-emerald-600 dark:text-emerald-400 font-medium">
+                Full Stack Developer
+              </span>
+              .
+            </p>
+            <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
+              In this post, I'll walk you through the entire process—from
+              initial planning to deployment.
+            </p>
+          </section>
+
+          {/* Tech Stack Used */}
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-xl shadow-lg shadow-blue-500/30">
+                ⚡
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                Tech Stack Used
+              </h2>
+            </div>
+            <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50">
+              <div className="flex flex-wrap gap-3">
+                {techPill(
+                  "Next.js 15",
+                  "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
+                )}
+                {techPill(
+                  "React 19",
+                  "bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300"
+                )}
+                {techPill(
+                  "TypeScript",
+                  "bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300"
+                )}
+                {techPill(
+                  "Tailwind CSS",
+                  "bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300"
+                )}
+                {techPill(
+                  "Framer Motion",
+                  "bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300"
+                )}
+                {techPill(
+                  "next-themes",
+                  "bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300"
+                )}
+              </div>
+              <p className="mt-4 text-slate-600 dark:text-slate-400 text-sm">
+                This combination gives me server-side rendering, excellent
+                developer experience, and smooth animations.
+              </p>
+            </div>
+          </section>
+
+          {/* Planning Phase */}
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-xl shadow-lg shadow-purple-500/30">
+                📋
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                Phase 1: Planning & Design
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                  🎯 Goals I Set
+                </h3>
+                <ul className="space-y-2 text-slate-600 dark:text-slate-400">
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500 mt-1">✓</span>
+                    Showcase my projects with live demos and source code
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500 mt-1">✓</span>
+                    Create a blog section to share my learning journey
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500 mt-1">✓</span>
+                    Dark/Light mode for better user experience
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500 mt-1">✓</span>
+                    Fully responsive design (mobile-first approach)
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-500 mt-1">✓</span>
+                    Clean, modern UI that reflects my personality
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-gradient-to-br from-violet-50 to-purple-50 dark:from-violet-900/20 dark:to-purple-900/20 backdrop-blur-sm rounded-2xl p-6 border border-violet-200 dark:border-violet-700/50">
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
+                  🎨 Design Inspiration
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  I browsed Dribbble, Behance, and other developer portfolios
+                  for inspiration. I was drawn to glassmorphism effects, subtle
+                  gradients, and smooth micro-interactions. I sketched wireframes
+                  on paper before touching any code.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Development Steps */}
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center text-xl shadow-lg shadow-teal-500/30">
+                🛠️
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                Phase 2: Development Journey
+              </h2>
+            </div>
+
+            <div className="space-y-4">
+              {stepCard(
+                "1",
+                "Project Setup",
+                "Started with create-next-app using the App Router. Configured TypeScript, ESLint, and Tailwind CSS from the beginning.",
+                "🚀"
+              )}
+              {stepCard(
+                "2",
+                "Component Architecture",
+                "Created reusable components like Navbar, Footer, ProjectCard, and BlogCard. Kept everything modular for easy maintenance.",
+                "🧩"
+              )}
+              {stepCard(
+                "3",
+                "Theme Implementation",
+                "Integrated next-themes for dark/light mode. Used CSS variables and Tailwind's dark: modifier for seamless switching.",
+                "🌓"
+              )}
+              {stepCard(
+                "4",
+                "Animations",
+                "Added Framer Motion for page transitions and scroll-triggered animations. The typed.js effect on the hero section adds personality.",
+                "✨"
+              )}
+              {stepCard(
+                "5",
+                "Blog System",
+                "Built a markdown-based blog using gray-matter for frontmatter parsing. Each post has its own route with dynamic rendering.",
+                "📝"
+              )}
+              {stepCard(
+                "6",
+                "Performance Optimization",
+                "Optimized images with Next.js Image component, implemented lazy loading, and ensured Core Web Vitals are green.",
+                "⚡"
+              )}
+            </div>
+          </section>
+
+          {/* Code Snippet Example */}
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-xl shadow-lg shadow-orange-500/30">
+                💻
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                Code Highlight: Theme Toggle
+              </h2>
+            </div>
+
+            <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50">
+              <p className="text-slate-600 dark:text-slate-400 mb-4">
+                Here's how I implemented the theme toggle using next-themes:
+              </p>
+              {codeBlock(
+                `import { useTheme } from 'next-themes';
+
+const ThemeToggle = () => {
+  const { theme, setTheme } = useTheme();
+
+  return (
+    <button
+      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+      className="p-2 rounded-lg bg-slate-200 dark:bg-slate-800"
+    >
+      {theme === 'dark' ? '☀️' : '🌙'}
+    </button>
+  );
+};`,
+                "tsx"
+              )}
+            </div>
+          </section>
+
+          {/* Challenges Section */}
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-400 to-pink-500 flex items-center justify-center text-xl shadow-lg shadow-pink-500/30">
+                🧗
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                Challenges I Faced
+              </h2>
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-2">
+              <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-2xl border border-rose-200 dark:border-rose-800/50">
+                <h3 className="font-bold text-rose-700 dark:text-rose-300 mb-2">
+                  Hydration Errors
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Fixed by using useEffect for theme detection and adding 'use
+                  client' directive properly.
+                </p>
+              </div>
+              <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-2xl border border-rose-200 dark:border-rose-800/50">
+                <h3 className="font-bold text-rose-700 dark:text-rose-300 mb-2">
+                  Responsive Design
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Used Tailwind's responsive prefixes (sm:, md:, lg:) extensively
+                  and tested on multiple devices.
+                </p>
+              </div>
+              <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-2xl border border-rose-200 dark:border-rose-800/50">
+                <h3 className="font-bold text-rose-700 dark:text-rose-300 mb-2">
+                  Animation Performance
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Kept animations subtle and used transform/opacity for 60fps
+                  smoothness.
+                </p>
+              </div>
+              <div className="p-5 bg-rose-50 dark:bg-rose-900/20 rounded-2xl border border-rose-200 dark:border-rose-800/50">
+                <h3 className="font-bold text-rose-700 dark:text-rose-300 mb-2">
+                  SEO Optimization
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Added proper meta tags, Open Graph images, and structured data
+                  for better visibility.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Results & Lessons */}
+          <section className="mb-12">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-xl shadow-lg shadow-emerald-500/30">
+                🎉
+              </div>
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                Results & Key Takeaways
+              </h2>
+            </div>
+
+            <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-900/20 dark:to-teal-900/20 backdrop-blur-sm rounded-2xl p-6 border border-emerald-200 dark:border-emerald-700/50">
+              <div className="grid gap-6 sm:grid-cols-3 mb-6">
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                    98+
+                  </div>
+                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                    Lighthouse Score
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                    &lt;2s
+                  </div>
+                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                    Load Time
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">
+                    100%
+                  </div>
+                  <div className="text-sm text-slate-600 dark:text-slate-400">
+                    Responsive
+                  </div>
+                </div>
+              </div>
+
+              <h3 className="font-bold text-slate-900 dark:text-white mb-3">
+                💡 What I Learned
+              </h3>
+              <ul className="space-y-2 text-slate-600 dark:text-slate-400">
+                <li>→ Start with a clear plan and wireframes</li>
+                <li>→ Mobile-first design saves time in the long run</li>
+                <li>→ Small animations make a big difference in UX</li>
+                <li>→ Test early, test often, test on real devices</li>
+                <li>→ Your portfolio is never "done"—keep iterating!</li>
+              </ul>
+            </div>
+          </section>
+
+          {/* Closing */}
+          <section className="text-center">
+            <div className="inline-block p-8 bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30 rounded-3xl">
+              <p className="text-lg text-slate-700 dark:text-slate-300 max-w-2xl">
+                Building this portfolio taught me more than any tutorial ever
+                could. If you're thinking about creating your own—
+                <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                  just start
+                </span>
+                . You'll learn along the way.
+              </p>
+              <p className="mt-4 text-slate-500 dark:text-slate-400">
+                Feel free to check out the source code on my GitHub! 🚀
+              </p>
+            </div>
+          </section>
+
+          {/* Share & Navigation */}
+          <div className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-200 dark:border-slate-700">
+            <div className="flex items-center gap-3">
+              <span className="text-slate-500 dark:text-slate-400">
+                Share this:
+              </span>
+              <button className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors cursor-pointer">
+                <svg
+                  className="w-5 h-5 text-slate-600 dark:text-slate-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
+                </svg>
+              </button>
+              <button className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-emerald-100 dark:hover:bg-emerald-900/50 transition-colors cursor-pointer">
+                <svg
+                  className="w-5 h-5 text-slate-600 dark:text-slate-400"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+              </button>
+            </div>
+            <Link
+              href="/Blogs"
+              className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-emerald-500/30 transition-all hover:-translate-y-0.5"
+            >
+              View More Posts →
+            </Link>
+          </div>
+        </main>
+      </div>
+    </>
   );
 }

@@ -2,61 +2,11 @@
 import React, { useState } from "react";
 import { useTheme } from "next-themes";
 import { FiCopy } from "react-icons/fi";
-
-const projects = [
-  {
-    id: 1,
-    title: "Villagepepro",
-    description:
-      "A fintech platform for seamless payments, wallet integration, and transaction management.",
-    img: "/gmax-fintech.jpg",
-    link: "https://villagepepro.com/",
-  },
-  {
-    id: 2,
-    title: "Neuva Life Sciences",
-    description:
-      "Website for a baby care products company, showcasing their product range and e-commerce features.",
-    img: "/baby_image.jpg",
-    link: "https://www.neuvalifesciences.com/",
-  },
-  {
-    id: 3,
-    title: "CCIE Labs",
-    description:
-      "Training center website for networking certifications with course details and enrollment features.",
-    img: "/training-center.jpeg",
-    link: "https://ccielab.net/",
-  },
-  {
-    id: 4,
-    title: "Home Pitara",
-    description:
-      "A real estate project that helps users discover, compare, and connect with property listings.",
-    img: "/Home-image.jpeg",
-    link: "https://homepitara.com/",
-  },
-  {
-    id: 5,
-    title: "Samgamam Banking Solutions",
-    description:
-      "A cooperative banking web platform enabling digital account, deposit, and fund management.",
-    img: "cooperative_bank.jpg",
-    link: "#",
-  },
-  {
-    id: 6,
-    title: "Coming Soon",
-    description:
-      "Another upcoming project in progress. Details will be revealed shortly.",
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&w=1000&q=80",
-    link: "https://www.pexels.com/search/website%20background/",
-  },
-];
+import Link from "next/link";
+import { projects } from "./projectsData";
 
 export default function Project() {
-  const { theme, setTheme } = useTheme();
-  const [isPaused, setIsPaused] = useState(false);
+  const { theme } = useTheme();
   const [copied, setCopied] = useState<number | null>(null);
 
   const handleCopy = (link: string, index: number) => {
@@ -69,14 +19,19 @@ export default function Project() {
     <div className="relative min-h-screen mt-14 overflow-hidden">
       {/* Background Video */}
       <video
-      key={theme}
+        key={theme}
         autoPlay
         loop
         muted
         playsInline
         className="absolute top-0 left-0 w-full h-full object-cover opacity-80"
       >
-        <source src={theme === "dark" ? "/videoproject1.mp4" : "/videoproject1.mp4"} type="video/mp4" />
+        <source
+          src={
+            theme === "dark" ? "/videoproject1.mp4" : "/videoproject1.mp4"
+          }
+          type="video/mp4"
+        />
       </video>
 
       {/* Overlay */}
@@ -109,37 +64,70 @@ export default function Project() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((p, i) => (
               <div
-                key={p.title}
+                key={p.id}
                 className="bg-white/70 dark:bg-black/40 backdrop-blur-lg 
             rounded-2xl shadow-lg p-4 border 
             border-gray-200 dark:border-gray-700 
-            hover:scale-105 transition"
+            hover:scale-105 transition cursor-pointer group"
               >
-                <img
-                  src={p.img}
-                  alt={p.title}
-                  className="rounded-xl w-full h-48 object-cover"
-                />
-                <h2 className="text-xl font-semibold mt-4">{p.title}</h2>
-                <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 line-clamp-4">
-                  {p.description}
-                </p>
+                <Link href={`/Project/${p.id}`}>
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    className="rounded-xl w-full h-48 object-cover group-hover:opacity-90 transition"
+                  />
+                  <h2 className="text-xl font-semibold mt-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                    {p.title}
+                  </h2>
+                  <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 line-clamp-3">
+                    {p.description}
+                  </p>
+                  <div className="flex flex-wrap gap-2 mt-3">
+                    {p.techStack.slice(0, 3).map((tech) => (
+                      <span
+                        key={tech}
+                        className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {p.techStack.length > 3 && (
+                      <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full">
+                        +{p.techStack.length - 3}
+                      </span>
+                    )}
+                  </div>
+                </Link>
 
                 <div className="flex gap-3 mt-4">
-                  <a
-                    href={p.link}
-                    target="_blank"
-                    className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+                  <Link
+                    href={`/Project/${p.id}`}
+                    className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center transition"
                   >
-                    Live Demo
-                  </a>
-
-                  <button
-                    onClick={() => handleCopy(p.link, i)}
-                    className="w-8 h-8 sm:w-10 sm:h-10 cursor-pointer flex items-center justify-center border border-white rounded-full hover:bg-white hover:text-black transition"
-                  >
-                    {copied === i ? "✔" : <FiCopy size={16} />}
-                  </button>
+                    View Details
+                  </Link>
+                  {p.link !== "#" && (
+                    <>
+                      <a
+                        href={p.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Live Demo
+                      </a>
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          handleCopy(p.link, i);
+                        }}
+                        className="w-10 h-10 cursor-pointer flex items-center justify-center border border-gray-300 dark:border-gray-600 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                      >
+                        {copied === i ? "✔" : <FiCopy size={16} />}
+                      </button>
+                    </>
+                  )}
                 </div>
               </div>
             ))}

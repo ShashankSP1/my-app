@@ -35,7 +35,7 @@ const Footer = () => {
                 <Link href={"/Project"}>Projects</Link>
               </li>
               <li>
-                <Link href={"/Blog"}>Blog</Link>
+                <Link href={"/Blog"}>Blogs</Link>
               </li>
               <li>
                 <Link href={"/Contact"}>Contact</Link>
@@ -53,12 +53,22 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#project2" className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
-                  Complaint Management System
+                  Villagepepro
                 </a>
               </li>
               <li>
                 <a href="#project3" className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
-                  News App
+                  CCIE Labs
+                </a>
+              </li>
+              <li>
+                <a href="#project3" className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
+                  Home Pitara
+                </a>
+              </li>
+              <li>
+                <a href="#project3" className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
+                  Samgamam
                 </a>
               </li>
             </ul>
