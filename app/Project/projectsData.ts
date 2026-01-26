@@ -96,7 +96,6 @@ export const projects: Project[] = [
       "Order Management",
       "Product Reviews",
       "Admin Dashboard",
-      "Payment Integration",
     ],
     projectStructure: {
       frontend: [
