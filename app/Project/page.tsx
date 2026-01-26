@@ -37,7 +37,7 @@ export default function Project() {
       {/* Overlay */}
       <div
         className={`absolute inset-0 
-      ${theme === "dark" ? "bg-black/50" : "bg-white/50"} 
+      ${theme === "dark" ? "bg-black/50" : "bg-white/80"} 
       backdrop-blur-sm`}
       ></div>
 
@@ -50,7 +50,7 @@ export default function Project() {
           </h2>
           <p
             className={`mt-2 max-w-2xl mx-auto text-sm sm:text-base md:text-lg ${
-              theme === "dark" ? "text-gray-300" : "text-gray-700"
+              theme === "dark" ? "text-gray-300" : "text-gray-800"
             }`}
           >
             Explore a showcase of projects I have worked on — including fintech
@@ -65,9 +65,8 @@ export default function Project() {
             {projects.map((p, i) => (
               <div
                 key={p.id}
-                className={`bg-white/70 dark:bg-black/40 backdrop-blur-lg 
+                className={`${theme === "dark" ? "bg-black/40 border-gray-700" : "bg-white/70 border-gray-400"} backdrop-blur-lg 
             rounded-2xl shadow-lg p-4 border 
-            border-gray-200 dark:border-gray-700 
             transition group ${
               p.id === 6
                 ? "cursor-default"
@@ -82,14 +81,14 @@ export default function Project() {
                       className="rounded-xl w-full h-48 object-cover opacity-75"
                     />
                     <h2 className="text-xl font-semibold mt-4">{p.title}</h2>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 line-clamp-3">
+                    <p className={`${theme === "dark" ? "text-gray-300" : "text-gray-800"} text-sm mt-2 line-clamp-3`}>
                       {p.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mt-3">
                       {p.techStack.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full"
+                          className={`text-xs px-2 py-1 ${theme === "dark" ? "bg-gray-800 text-gray-400" : "bg-gray-100 text-gray-600"} rounded-full`}
                         >
                           {tech}
                         </span>
@@ -103,23 +102,23 @@ export default function Project() {
                       alt={p.title}
                       className="rounded-xl w-full h-48 object-cover group-hover:opacity-90 transition"
                     />
-                    <h2 className="text-xl font-semibold mt-4 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition">
+                    <h2 className={`text-xl font-semibold mt-4 ${theme === "dark" ? "text-gray-300 group-hover:text-blue-400" : "text-gray-800 group-hover:text-blue-600"} transition`}>
                       {p.title}
                     </h2>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm mt-2 line-clamp-3">
+                    <p className={`${theme === "dark" ? "text-gray-300" : "text-gray-800"} text-sm mt-2 line-clamp-3`}>
                       {p.description}
                     </p>
                     <div className="flex flex-wrap gap-2 mt-3">
                       {p.techStack.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-full"
+                          className={`text-xs px-2 py-1 ${theme === "dark" ? "bg-blue-900/50 text-blue-300" : "bg-blue-100 text-blue-700"} rounded-full`}
                         >
                           {tech}
                         </span>
                       ))}
                       {p.techStack.length > 3 && (
-                        <span className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-full">
+                        <span className={`text-xs px-2 py-1 ${theme === "dark" ? "bg-gray-800 text-gray-400" : "bg-gray-100 text-gray-600"} rounded-full`}>
                           +{p.techStack.length - 3}
                         </span>
                       )}

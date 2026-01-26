@@ -49,8 +49,12 @@ export default function Nav() {
                     : "hover:bg-blue-100 hover:text-blue-700"
                 } ${
                   pathname === "/"
-                    ? "font-semibold text-rose-600"
-                    : ""
+                    ? theme === "dark"
+                      ? "font-semibold text-rose-400"
+                      : "font-semibold text-rose-500"
+                    : theme === "dark"
+                    ? "text-gray-200"
+                    : "text-gray-900"
                 } `}
               >
                 Home
@@ -67,8 +71,12 @@ export default function Nav() {
                 }
                 ${
                   pathname === "/About"
-                    ? "font-semibold text-rose-600"
-                    : ""
+                    ? theme === "dark"
+                      ? "font-semibold text-rose-400"
+                      : "font-semibold text-rose-500"
+                    : theme === "dark"
+                    ? "text-gray-200"
+                    : "text-gray-900"
                 } `}
               >
                 About
@@ -85,8 +93,12 @@ export default function Nav() {
                 }
                 ${
                   pathname === "/Project"
-                    ? "font-semibold text-rose-600"
-                    : ""
+                    ? theme === "dark"
+                      ? "font-semibold text-rose-400"
+                      : "font-semibold text-rose-500"
+                    : theme === "dark"
+                    ? "text-gray-200"
+                    : "text-gray-900"
                 }`}
               >
                 Projects
@@ -103,8 +115,12 @@ export default function Nav() {
                 }
                 ${
                   pathname === "/Blog"
-                    ? "font-semibold text-rose-600"
-                    : ""
+                    ? theme === "dark"
+                      ? "font-semibold text-rose-400"
+                      : "font-semibold text-rose-500"
+                    : theme === "dark"
+                    ? "text-gray-200"
+                    : "text-gray-900"
                 }`}
               >
                 Blogs
@@ -121,8 +137,12 @@ export default function Nav() {
                 }
                 ${
                   pathname === "/Contact"
-                    ? "font-semibold text-rose-600"
-                    : ""
+                    ? theme === "dark"
+                      ? "font-semibold text-rose-400"
+                      : "font-semibold text-rose-500"
+                    : theme === "dark"
+                    ? "text-gray-200"
+                    : "text-gray-900"
                 }`}
               >
                 Contact
@@ -133,7 +153,9 @@ export default function Nav() {
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
-              className={`ml-2 flex items-center w-10 h-5.5 rounded-full p-1 transition-colors duration-300 border-2 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-amber-400 ${
+              className={`ml-2 flex items-center w-10 h-5.5 rounded-full p-1 transition-colors duration-300 border-2 ${
+                theme === "dark" ? "border-gray-700" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-amber-400 ${
                 theme === "dark" ? "bg-white" : "bg-gray-900"
               }`}
             >
@@ -174,13 +196,13 @@ export default function Nav() {
           {isOpen ? (
             <FaTimes
               className={` ${
-                theme === "dark" ? "text-gray-100" : "text-black"
+                theme === "dark" ? "text-gray-100" : "text-gray-900"
               }`}
             />
           ) : (
             <FaBars
-              className={`text-blue-900 ${
-                theme === "dark" ? "text-white" : "text-black"
+              className={`${
+                theme === "dark" ? "text-white" : "text-gray-900"
               }`}
             />
           )}
@@ -197,7 +219,11 @@ export default function Nav() {
         `}
       >
         <ul
-          className={`flex flex-col gap-3 bg-white/80 dark:bg-gray-900/80 text-black dark:text-white p-6 pt-24 min-h-screen w-full shadow-2xl backdrop-blur-xl transition-all duration-500 ${
+          className={`flex flex-col gap-3 p-6 pt-24 min-h-screen w-full shadow-2xl backdrop-blur-xl transition-all duration-500 ${
+            theme === "dark"
+              ? "bg-gray-900/80 text-white"
+              : "bg-white/80 text-black"
+          } ${
             isOpen ? "translate-y-0" : "-translate-y-10"
           }`}
         >
@@ -205,7 +231,9 @@ export default function Nav() {
             <button
               onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               aria-label="Toggle theme"
-              className={`ml-4 flex items-center w-12 h-6 rounded-full p-1 transition-colors duration-300 border-2 border-gray-300 dark:border-gray-700 focus:outline-none focus:ring-1 focus:ring-amber-400 ${
+              className={`ml-4 flex items-center w-12 h-6 rounded-full p-1 transition-colors duration-300 border-2 ${
+                theme === "dark" ? "border-gray-700" : "border-gray-300"
+              } focus:outline-none focus:ring-1 focus:ring-amber-400 ${
                 theme === "dark" ? "bg-white" : "bg-gray-950"
               }`}
             >
@@ -235,7 +263,11 @@ export default function Nav() {
             <Link
               href="/"
               onClick={toggleMenu}
-              className="hover:bg-purple-400/80 rounded-3xl px-4 py-2 block text-lg transition-colors duration-200"
+              className={`rounded-3xl px-4 py-2 block text-lg transition-colors duration-200 ${
+                theme === "dark"
+                  ? "text-gray-200 hover:bg-purple-500/30 hover:text-purple-200"
+                  : "text-gray-900 hover:bg-purple-400/80 hover:text-purple-700"
+              }`}
             >
               Home
             </Link>
@@ -244,7 +276,11 @@ export default function Nav() {
             <Link
               href="/About"
               onClick={toggleMenu}
-              className="block text-lg font-medium px-5 py-3 rounded-xl hover:bg-blue-500/20 hover:text-blue-600 dark:hover:text-blue-300 transition-all duration-300"
+              className={`block text-lg font-medium px-5 py-3 rounded-xl transition-all duration-300 ${
+                theme === "dark"
+                  ? "text-gray-200 hover:bg-blue-500/20 hover:text-blue-300"
+                  : "text-gray-900 hover:bg-blue-500/20 hover:text-blue-600"
+              }`}
             >
               About
             </Link>
@@ -253,7 +289,11 @@ export default function Nav() {
             <Link
               href="/Project"
               onClick={toggleMenu}
-              className="hover:bg-purple-400/80 rounded-3xl px-4 py-2 block text-lg transition-colors duration-200"
+              className={`rounded-3xl px-4 py-2 block text-lg transition-colors duration-200 ${
+                theme === "dark"
+                  ? "text-gray-200 hover:bg-purple-500/30 hover:text-purple-200"
+                  : "text-gray-900 hover:bg-purple-400/80 hover:text-purple-700"
+              }`}
             >
               Projects
             </Link>
@@ -262,7 +302,11 @@ export default function Nav() {
             <Link
               href="/Blogs"
               onClick={toggleMenu}
-              className="hover:bg-purple-400/80 rounded-3xl px-4 py-2 block text-lg transition-colors duration-200"
+              className={`rounded-3xl px-4 py-2 block text-lg transition-colors duration-200 ${
+                theme === "dark"
+                  ? "text-gray-200 hover:bg-purple-500/30 hover:text-purple-200"
+                  : "text-gray-900 hover:bg-purple-400/80 hover:text-purple-700"
+              }`}
             >
               Blogs
             </Link>
@@ -271,7 +315,11 @@ export default function Nav() {
             <Link
               href="/Contact"
               onClick={toggleMenu}
-              className="hover:bg-purple-400/80 rounded-3xl px-4 py-2 block text-lg transition-colors duration-200"
+              className={`rounded-3xl px-4 py-2 block text-lg transition-colors duration-200 ${
+                theme === "dark"
+                  ? "text-gray-200 hover:bg-purple-500/30 hover:text-purple-200"
+                  : "text-gray-900 hover:bg-purple-400/80 hover:text-purple-700"
+              }`}
             >
               Contact
             </Link>
