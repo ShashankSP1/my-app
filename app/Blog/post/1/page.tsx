@@ -2,12 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { Metadata } from "next";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 // Note: metadata needs to be in a separate file for client components
 // or you can create a layout.tsx for this route with the metadata
 
 export default function FirstBlog() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,9 +23,9 @@ export default function FirstBlog() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const techBadge = (name: string, color: string) => (
+  const techBadge = (name: string, bgColorClass: string, textColorClass: string) => (
     <span
-      className={`inline-block px-3 py-1.5 rounded-full text-sm font-medium ${color} transition-transform hover:scale-105 cursor-default`}
+      className={`inline-block px-3 py-1.5 rounded-full text-sm font-medium ${bgColorClass} ${textColorClass} transition-transform hover:scale-105 cursor-default`}
     >
       {name}
     </span>
@@ -37,7 +39,9 @@ export default function FirstBlog() {
         style={{ width: `${scrollProgress}%` }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-violet-50 to-pink-50 dark:from-slate-950 dark:via-violet-950/30 dark:to-slate-900">
+      <div
+        className={`min-h-screen bg-gradient-to-br ${theme === "dark" ? "from-slate-950 via-violet-950/30 to-slate-900" : "from-slate-50 via-violet-50 to-pink-50"}`}
+      >
         {/* Hero Section */}
         <div className="relative overflow-hidden">
 
@@ -46,7 +50,7 @@ export default function FirstBlog() {
             <div className="flex flex-row gap-4">
               <Link
               href="/Blogs"
-              className="inline-flex items-center gap-2 text-violet-600 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 transition-colors mb-8 group"
+              className={`inline-flex items-center gap-2 mb-8 group transition-colors ${theme === "dark" ? "text-violet-400 hover:text-violet-300" : "text-violet-600 hover:text-violet-800"}`}
             >
               <svg
                 className="w-5 h-5 group-hover:-translate-x-1 transition-transform"
@@ -65,14 +69,18 @@ export default function FirstBlog() {
             </Link>
 
             {/* Category Badge */}
-            <span className="inline-block px-4 py-1.5 bg-violet-100 dark:bg-violet-900/50 text-violet-700 dark:text-violet-300 rounded-full text-sm font-semibold mb-6">
+            <span
+              className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-6 ${theme === "dark" ? "bg-violet-900/50 text-violet-300" : "bg-violet-100 text-violet-700"}`}
+            >
               Tech Stack
             </span>
             </div>
             
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
+            <h1
+              className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
+            >
               My 2025 Tech Stack as a{" "}
               <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
                 Frontend Developer
@@ -85,10 +93,14 @@ export default function FirstBlog() {
                 S
               </div>
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">
+                <p
+                  className={`font-semibold ${theme === "dark" ? "text-white" : "text-slate-900"}`}
+                >
                   Shashank S P
                 </p>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <p
+                  className={`text-sm ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}
+                >
                   September 24, 2025 · 4 min read
                 </p>
               </div>
@@ -99,24 +111,36 @@ export default function FirstBlog() {
         {/* Main Content */}
         <main className="max-w-4xl mx-auto px-6 pb-20">
           {/* Intro Card */}
-          <section className="bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 shadow-xl shadow-violet-500/5 border border-violet-100 dark:border-violet-900/30 mb-10 -mt-6 relative z-10">
-            <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          <section
+            className={`backdrop-blur-sm rounded-2xl p-8 shadow-xl shadow-violet-500/5 mb-10 -mt-6 relative z-10 ${theme === "dark" ? "bg-slate-800/50 border border-violet-900/30" : "bg-white/70 border border-violet-100"}`}
+          >
+            <p
+              className={`text-lg leading-relaxed ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+            >
               As a frontend developer, my tech stack has evolved a lot over the
               past year. In 2025, my focus is on building{" "}
-              <span className="text-violet-600 dark:text-violet-400 font-medium">
+              <span
+                className={`font-medium ${theme === "dark" ? "text-violet-400" : "text-violet-600"}`}
+              >
                 clean
               </span>
               ,{" "}
-              <span className="text-fuchsia-600 dark:text-fuchsia-400 font-medium">
+              <span
+                className={`font-medium ${theme === "dark" ? "text-fuchsia-400" : "text-fuchsia-600"}`}
+              >
                 scalable
               </span>
               , and{" "}
-              <span className="text-pink-600 dark:text-pink-400 font-medium">
+              <span
+                className={`font-medium ${theme === "dark" ? "text-pink-400" : "text-pink-600"}`}
+              >
                 performance-friendly
               </span>{" "}
               user interfaces.
             </p>
-            <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
+            <p
+              className={`text-lg leading-relaxed mt-4 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+            >
               In this post, I'm sharing the tools and technologies I actively
               use, along with what I'm currently learning.
             </p>
@@ -134,19 +158,24 @@ export default function FirstBlog() {
                   Core Technologies
                 </h2>
               </div>
-              <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50 group-hover:border-orange-300 dark:group-hover:border-orange-700 transition-colors">
+              <div
+                className={`backdrop-blur-sm rounded-2xl p-6 transition-colors ${theme === "dark" ? "bg-slate-800/40 border border-slate-700/50 group-hover:border-orange-700" : "bg-white/60 border border-slate-200 group-hover:border-orange-300"}`}
+              >
                 <div className="flex flex-wrap gap-3">
                   {techBadge(
                     "HTML5",
-                    "bg-orange-100 dark:bg-orange-900/40 text-orange-700 dark:text-orange-300"
+                    theme === "dark" ? "bg-orange-900/40" : "bg-orange-100",
+                    theme === "dark" ? "text-orange-300" : "text-orange-700"
                   )}
                   {techBadge(
                     "CSS3",
-                    "bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300"
+                    theme === "dark" ? "bg-blue-900/40" : "bg-blue-100",
+                    theme === "dark" ? "text-blue-300" : "text-blue-700"
                   )}
                   {techBadge(
                     "JavaScript (ES6+)",
-                    "bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300"
+                    theme === "dark" ? "bg-yellow-900/40" : "bg-yellow-100",
+                    theme === "dark" ? "text-yellow-300" : "text-yellow-700"
                   )}
                 </div>
                 <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
@@ -167,15 +196,19 @@ export default function FirstBlog() {
                   Frameworks & Libraries
                 </h2>
               </div>
-              <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50 group-hover:border-blue-300 dark:group-hover:border-blue-700 transition-colors">
+              <div
+                className={`backdrop-blur-sm rounded-2xl p-6 transition-colors ${theme === "dark" ? "bg-slate-800/40 border border-slate-700/50 group-hover:border-blue-700" : "bg-white/60 border border-slate-200 group-hover:border-blue-300"}`}
+              >
                 <div className="flex flex-wrap gap-3">
                   {techBadge(
                     "React.js",
-                    "bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300"
+                    theme === "dark" ? "bg-cyan-900/40" : "bg-cyan-100",
+                    theme === "dark" ? "text-cyan-300" : "text-cyan-700"
                   )}
                   {techBadge(
                     "Next.js",
-                    "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
+                    theme === "dark" ? "bg-slate-700" : "bg-slate-200",
+                    theme === "dark" ? "text-slate-300" : "text-slate-700"
                   )}
                 </div>
                 <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
@@ -195,19 +228,24 @@ export default function FirstBlog() {
                   Styling
                 </h2>
               </div>
-              <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50 group-hover:border-pink-300 dark:group-hover:border-pink-700 transition-colors">
+              <div
+                className={`backdrop-blur-sm rounded-2xl p-6 transition-colors ${theme === "dark" ? "bg-slate-800/40 border border-slate-700/50 group-hover:border-pink-700" : "bg-white/60 border border-slate-200 group-hover:border-pink-300"}`}
+              >
                 <div className="flex flex-wrap gap-3">
                   {techBadge(
                     "Tailwind CSS",
-                    "bg-teal-100 dark:bg-teal-900/40 text-teal-700 dark:text-teal-300"
+                    theme === "dark" ? "bg-teal-900/40" : "bg-teal-100",
+                    theme === "dark" ? "text-teal-300" : "text-teal-700"
                   )}
                   {techBadge(
                     "ShadCN UI",
-                    "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
+                    theme === "dark" ? "bg-slate-700" : "bg-slate-200",
+                    theme === "dark" ? "text-slate-300" : "text-slate-700"
                   )}
                   {techBadge(
                     "Material Tailwind",
-                    "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300"
+                    theme === "dark" ? "bg-indigo-900/40" : "bg-indigo-100",
+                    theme === "dark" ? "text-indigo-300" : "text-indigo-700"
                   )}
                 </div>
                 <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
@@ -227,19 +265,24 @@ export default function FirstBlog() {
                   State & Forms
                 </h2>
               </div>
-              <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50 group-hover:border-emerald-300 dark:group-hover:border-emerald-700 transition-colors">
+              <div
+                className={`backdrop-blur-sm rounded-2xl p-6 transition-colors ${theme === "dark" ? "bg-slate-800/40 border border-slate-700/50 group-hover:border-emerald-700" : "bg-white/60 border border-slate-200 group-hover:border-emerald-300"}`}
+              >
                 <div className="flex flex-wrap gap-3">
                   {techBadge(
                     "React Hooks",
-                    "bg-cyan-100 dark:bg-cyan-900/40 text-cyan-700 dark:text-cyan-300"
+                    theme === "dark" ? "bg-cyan-900/40" : "bg-cyan-100",
+                    theme === "dark" ? "text-cyan-300" : "text-cyan-700"
                   )}
                   {techBadge(
                     "Context API",
-                    "bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300"
+                    theme === "dark" ? "bg-purple-900/40" : "bg-purple-100",
+                    theme === "dark" ? "text-purple-300" : "text-purple-700"
                   )}
                   {techBadge(
                     "Formik + Yup",
-                    "bg-blue-100 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300"
+                    theme === "dark" ? "bg-blue-900/40" : "bg-blue-100",
+                    theme === "dark" ? "text-blue-300" : "text-blue-700"
                   )}
                 </div>
                 <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
@@ -260,23 +303,29 @@ export default function FirstBlog() {
                   Developer Tools
                 </h2>
               </div>
-              <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50 group-hover:border-violet-300 dark:group-hover:border-violet-700 transition-colors">
+              <div
+                className={`backdrop-blur-sm rounded-2xl p-6 transition-colors ${theme === "dark" ? "bg-slate-800/40 border border-slate-700/50 group-hover:border-violet-700" : "bg-white/60 border border-slate-200 group-hover:border-violet-300"}`}
+              >
                 <div className="flex flex-wrap gap-3">
                   {techBadge(
                     "Git & GitHub",
-                    "bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-300"
+                    theme === "dark" ? "bg-slate-700" : "bg-slate-200",
+                    theme === "dark" ? "text-slate-300" : "text-slate-700"
                   )}
                   {techBadge(
                     "Vite",
-                    "bg-yellow-100 dark:bg-yellow-900/40 text-yellow-700 dark:text-yellow-300"
+                    theme === "dark" ? "bg-yellow-900/40" : "bg-yellow-100",
+                    theme === "dark" ? "text-yellow-300" : "text-yellow-700"
                   )}
                   {techBadge(
                     "ESLint",
-                    "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-300"
+                    theme === "dark" ? "bg-indigo-900/40" : "bg-indigo-100",
+                    theme === "dark" ? "text-indigo-300" : "text-indigo-700"
                   )}
                   {techBadge(
                     "Prettier",
-                    "bg-pink-100 dark:bg-pink-900/40 text-pink-700 dark:text-pink-300"
+                    theme === "dark" ? "bg-pink-900/40" : "bg-pink-100",
+                    theme === "dark" ? "text-pink-300" : "text-pink-700"
                   )}
                 </div>
                 <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
@@ -297,7 +346,9 @@ export default function FirstBlog() {
                   What I'm Learning Next
                 </h2>
               </div>
-              <div className="bg-gradient-to-br from-violet-50 to-pink-50 dark:from-violet-900/20 dark:to-pink-900/20 backdrop-blur-sm rounded-2xl p-6 border-2 border-dashed border-violet-300 dark:border-violet-700 group-hover:border-solid transition-all">
+              <div
+                className={`backdrop-blur-sm rounded-2xl p-6 border-2 border-dashed group-hover:border-solid transition-all ${theme === "dark" ? "from-violet-900/20 to-pink-900/20 border-violet-700" : "from-violet-50 to-pink-50 border-violet-300"}`}
+              >
                 <div className="grid sm:grid-cols-2 gap-4">
                   <div className="flex items-center gap-3 p-3 bg-white/80 dark:bg-slate-800/80 rounded-xl">
                     <span className="text-2xl">📚</span>
@@ -330,16 +381,24 @@ export default function FirstBlog() {
 
           {/* Closing Section */}
           <section className="mt-16 text-center">
-            <div className="inline-block p-8 bg-gradient-to-br from-violet-100 to-pink-100 dark:from-violet-900/30 dark:to-pink-900/30 rounded-3xl">
-              <p className="text-lg text-slate-700 dark:text-slate-300 max-w-2xl">
+            <div
+              className={`inline-block p-8 rounded-3xl ${theme === "dark" ? "bg-gradient-to-br from-violet-900/30 to-pink-900/30" : "bg-gradient-to-br from-violet-100 to-pink-100"}`}
+            >
+              <p
+                className={`text-lg max-w-2xl ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
+              >
                 This stack reflects how I build real-world applications today.
                 Tools will change, but{" "}
-                <span className="font-semibold text-violet-600 dark:text-violet-400">
+                <span
+                  className={`font-semibold ${theme === "dark" ? "text-violet-400" : "text-violet-600"}`}
+                >
                   strong fundamentals
                 </span>{" "}
                 will always matter.
               </p>
-              <p className="mt-4 text-slate-500 dark:text-slate-400">
+              <p
+                className={`mt-4 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}
+              >
                 I'll keep updating this post as my skills and priorities
                 evolve. ✨
               </p>
@@ -347,12 +406,16 @@ export default function FirstBlog() {
           </section>
 
           {/* Share & Navigation */}
-          <div className="mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <div
+            className={`mt-16 flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t ${theme === "dark" ? "border-slate-700" : "border-slate-200"}`}
+          >
             <div className="flex items-center gap-3">
-              <span className="text-slate-500 dark:text-slate-400">
+              <span
+                className={`${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}
+              >
                 Share this:
               </span>
-              <button className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+              <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${theme === "dark" ? "bg-slate-800 hover:bg-blue-900/50" : "bg-slate-100 hover:bg-blue-100"}`}>
                 <svg
                   className="w-5 h-5 text-slate-600 dark:text-slate-400"
                   fill="currentColor"
@@ -361,7 +424,7 @@ export default function FirstBlog() {
                   <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                 </svg>
               </button>
-              <button className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors">
+              <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors ${theme === "dark" ? "bg-slate-800 hover:bg-blue-900/50" : "bg-slate-100 hover:bg-blue-100"}`}>
                 <svg
                   className="w-5 h-5 text-slate-600 dark:text-slate-400"
                   fill="currentColor"
