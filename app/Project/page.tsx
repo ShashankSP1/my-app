@@ -139,7 +139,7 @@ export default function Project() {
                       href={`/Project/${p.id}`}
                       className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 text-center transition"
                     >
-                      View Details
+                      Read More
                     </Link>
                   )}
                   {p.id !== 6 && (

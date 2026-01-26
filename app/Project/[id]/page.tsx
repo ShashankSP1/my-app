@@ -146,7 +146,7 @@ export default function ProjectDetail() {
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
-                  <div className={`p-4 ${theme === "dark" ? "bg-gray-900/80 border-gray-600 hover:border-amber-600": "bg-white/90 border-gray-300 hover:border-amber-400"} rounded-xl backdrop-blur-sm border`}>
+                  <div className={`p-4 ${theme === "dark" ? "bg-gray-900/80 border-gray-700 hover:border-amber-600": "bg-white/90 border-gray-400 hover:border-amber-400"} rounded-xl backdrop-blur-sm border`}>
                     <div className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-800"}`}>
                       Duration
                     </div>
@@ -154,7 +154,7 @@ export default function ProjectDetail() {
                       {project.duration}
                     </div>
                   </div>
-                  <div className={`p-4 ${theme === "dark" ? "bg-gray-900/80 border-gray-600 hover:border-amber-600": "bg-white/90 border-gray-200 hover:border-amber-400"} rounded-xl backdrop-blur-sm border`}>
+                  <div className={`p-4 ${theme === "dark" ? "bg-gray-900/80 border-gray-600 hover:border-amber-600": "bg-white/90 border-gray-400 hover:border-amber-400"} rounded-xl backdrop-blur-sm border`}>
                     <div className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-800"}`}>
                       Role
                     </div>
@@ -163,7 +163,7 @@ export default function ProjectDetail() {
                     </div>
                   </div>
                   {project.teamSize && (
-                    <div className={`p-4 ${theme === "dark" ? "bg-gray-900/80 border-gray-600 hover:border-amber-600": "bg-white/90 border-gray-200 hover:border-amber-400"} rounded-xl backdrop-blur-sm border`}>
+                    <div className={`p-4 ${theme === "dark" ? "bg-gray-900/80 border-gray-600 hover:border-amber-600": "bg-white/90 border-gray-400 hover:border-amber-400"} rounded-xl backdrop-blur-sm border`}>
                       <div className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-800"}`}>
                         Team Size
                       </div>
@@ -173,17 +173,6 @@ export default function ProjectDetail() {
                     </div>
                   )}
                 </div>
-
-                {/* {project.link !== "#" && (
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-semibold"
-                  >
-                    Visit Live Site →
-                  </a>
-                )} */}
               </div>
             </div>
 
@@ -213,7 +202,7 @@ export default function ProjectDetail() {
                 {project.features.map((feature, index) => (
                   <div
                     key={index}
-                    className={`p-4 ${theme === "dark" ? "bg-gray-900/80 dark:border-gray-700 hover:border-blue-600": "bg-white/90 border-gray-300 hover:border-blue-400"} rounded-lg backdrop-blur-sm border transition-colors`}
+                    className={`p-4 ${theme === "dark" ? "bg-gray-900/80 dark:border-gray-700 hover:border-blue-600": "bg-white/90 border-gray-400 hover:border-blue-400"} rounded-lg backdrop-blur-sm border transition-colors`}
                   >
                     <div className="flex items-center gap-3">
                       <span className={`${theme === "dark" ? "text-blue-500": "text-blue-700"} font-bold`}>

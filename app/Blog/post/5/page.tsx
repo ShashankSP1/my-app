@@ -1,9 +1,11 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useTheme } from "next-themes";
 
 export default function FresherBalanceBlog() {
   const [scrollProgress, setScrollProgress] = useState(0);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,13 +20,13 @@ export default function FresherBalanceBlog() {
   }, []);
 
   const struggleCard = (icon: string, title: string, description: string) => (
-    <div className="flex items-start gap-4 p-5 bg-white/80 dark:bg-slate-800/80 rounded-xl border border-slate-200 dark:border-slate-700/50 hover:border-rose-300 dark:hover:border-rose-700 transition-all hover:shadow-lg">
+    <div className={`flex items-start gap-4 p-5 rounded-xl border transition-all duration-300 hover:shadow-lg ${theme === "dark" ? "bg-slate-800/80 border-slate-700/50 hover:border-rose-700" : "bg-white/80 border-slate-200 hover:border-rose-300"}`}>
       <div className="text-3xl flex-shrink-0">{icon}</div>
       <div>
-        <h3 className="font-bold text-slate-900 dark:text-white mb-1">
+        <h3 className={`font-bold mb-1 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
           {title}
         </h3>
-        <p className="text-sm text-slate-600 dark:text-slate-400">
+        <p className={`text-sm transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
           {description}
         </p>
       </div>
@@ -41,21 +43,21 @@ export default function FresherBalanceBlog() {
     <div className="group">
       <div className="flex items-center gap-4 mb-4">
         <div
-          className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform`}
+          className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${gradient} flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:scale-110 transition-transform duration-300`}
         >
           {number}
         </div>
-        <h3 className="text-xl font-bold text-slate-900 dark:text-white">
+        <h3 className={`text-xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
           {title}
         </h3>
       </div>
-      <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50 group-hover:border-indigo-300 dark:group-hover:border-indigo-700 transition-colors ml-4 border-l-4 border-l-indigo-500">
-        <p className="text-slate-600 dark:text-slate-400 mb-4">{description}</p>
+      <div className={`backdrop-blur-sm rounded-2xl p-6 border border-l-4 border-l-indigo-500 transition-all duration-300 ml-4 ${theme === "dark" ? "bg-slate-800/40 border-slate-700/50 group-hover:border-indigo-700" : "bg-white/60 border-slate-200 group-hover:border-indigo-300"}`}>
+        <p className={`mb-4 transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>{description}</p>
         <ul className="space-y-2">
           {tips.map((tip, index) => (
             <li
               key={index}
-              className="flex items-start gap-2 text-slate-700 dark:text-slate-300"
+              className={`flex items-start gap-2 transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}
             >
               <span className="text-indigo-500 mt-1">→</span>
               <span>{tip}</span>
@@ -73,14 +75,14 @@ export default function FresherBalanceBlog() {
     color: string
   ) => (
     <div
-      className={`p-5 rounded-2xl border-2 ${color} hover:scale-[1.02] transition-all`}
+      className={`p-5 rounded-2xl border-2 ${color} hover:scale-[1.02] transition-all duration-300`}
     >
       <div className="text-2xl mb-2">{icon}</div>
-      <h4 className="font-bold text-slate-900 dark:text-white mb-2">
+      <h4 className={`font-bold mb-2 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
         {mistake}
       </h4>
-      <p className="text-sm text-slate-600 dark:text-slate-400">
-        <span className="font-semibold text-green-600 dark:text-green-400">
+      <p className={`text-sm transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
+        <span className={`font-semibold transition-colors duration-300 ${theme === "dark" ? "text-green-400" : "text-green-600"}`}>
           Lesson:
         </span>{" "}
         {lesson}
@@ -96,7 +98,7 @@ export default function FresherBalanceBlog() {
         style={{ width: `${scrollProgress}%` }}
       />
 
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-indigo-50 to-purple-50 dark:from-slate-950 dark:via-indigo-950/20 dark:to-slate-900">
+      <div className={`min-h-screen bg-gradient-to-br transition-colors duration-300 ${theme === "dark" ? "from-slate-950 via-slate-900 to-slate-900" : "from-slate-50 via-indigo-50 to-purple-50"}`}>
         {/* Hero Section */}
         <div className="relative overflow-hidden">
 
@@ -105,7 +107,7 @@ export default function FresherBalanceBlog() {
             <div className="flex flex-wrap items-center gap-4 mb-8">
               <Link
                 href="/Blogs"
-                className="inline-flex items-center gap-2 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300 transition-colors group"
+                className={`inline-flex items-center gap-2 transition-colors duration-300 group ${theme === "dark" ? "text-indigo-400 hover:text-indigo-300" : "text-indigo-600 hover:text-indigo-800"}`}
               >
                 <svg
                   className="w-5 h-5 group-hover:-translate-x-1 transition-transform"
@@ -123,17 +125,17 @@ export default function FresherBalanceBlog() {
                 Back to Blogs
               </Link>
 
-              <span className="inline-block px-4 py-1.5 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 rounded-full text-sm font-semibold">
+              <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold transition-colors duration-300 ${theme === "dark" ? "bg-indigo-900/50 text-indigo-300" : "bg-indigo-100 text-indigo-700"}`}>
                 Career Advice
               </span>
 
-              <span className="inline-block px-4 py-1.5 bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 rounded-full text-sm font-semibold">
+              <span className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold transition-colors duration-300 ${theme === "dark" ? "bg-purple-900/50 text-purple-300" : "bg-purple-100 text-purple-700"}`}>
                 Learning Journey
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
+            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
               Balancing Learning and Real-World Projects as a{" "}
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Fresher Developer
@@ -141,7 +143,7 @@ export default function FresherBalanceBlog() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-8">
+            <p className={`text-xl max-w-2xl mb-8 transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
               The struggle is real—but so is the growth. Here's how I navigate
               between endless tutorials and actual project deadlines.
             </p>
@@ -152,10 +154,10 @@ export default function FresherBalanceBlog() {
                 S
               </div>
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">
+                <p className={`font-semibold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                   Shashank S P
                 </p>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <p className={`text-sm transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
                   September 22, 2025 · 8 min read
                 </p>
               </div>
@@ -166,8 +168,8 @@ export default function FresherBalanceBlog() {
         {/* Main Content */}
         <main className="max-w-4xl mx-auto px-6 pb-20">
           {/* Intro Section */}
-          <section className="bg-white/70 dark:bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 shadow-xl shadow-indigo-500/5 border border-indigo-100 dark:border-indigo-900/30 mb-10 -mt-6 relative z-10">
-            <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+          <section className={`backdrop-blur-sm rounded-2xl p-8 shadow-xl mb-10 -mt-6 relative z-10 transition-all duration-300 border ${theme === "dark" ? "bg-slate-800/50 shadow-indigo-500/5 border-indigo-900/30" : "bg-white/70 shadow-indigo-500/5 border-indigo-100"}`}>
+            <p className={`text-lg leading-relaxed transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
               As a fresher developer, I constantly felt pulled in two
               directions: the{" "}
               <span className="font-bold text-indigo-600 dark:text-indigo-400">
@@ -190,10 +192,10 @@ export default function FresherBalanceBlog() {
           {/* The Struggle */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-rose-400 to-red-500 flex items-center justify-center text-xl shadow-lg shadow-red-500/30">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-rose-400 to-red-500 flex items-center justify-center text-xl shadow-lg transition-colors duration-300 ${theme === "dark" ? "shadow-red-500/30" : "shadow-red-500/20"}`}>
                 😰
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              <h2 className={`text-2xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                 The Struggles I Faced
               </h2>
             </div>
@@ -233,42 +235,40 @@ export default function FresherBalanceBlog() {
           </section>
 
           {/* The Realization */}
-          <section className="mb-12">
-            <div className="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-900/20 dark:to-orange-900/20 backdrop-blur-sm rounded-2xl p-8 border border-amber-200 dark:border-amber-700/50">
+          <section className={`mb-12 backdrop-blur-sm rounded-2xl p-8 border transition-all duration-300 ${theme === "dark" ? "bg-amber-900/20 from-amber-900/30 to-orange-900/30 border-amber-700/50" : "bg-gradient-to-br from-amber-50 to-orange-50 border-amber-200"}`}>
               <div className="flex items-start gap-4">
                 <div className="text-4xl">💡</div>
                 <div>
-                  <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-4">
+                  <h2 className={`text-2xl font-bold mb-4 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                     The Realization That Changed Everything
                   </h2>
-                  <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+                  <p className={`text-lg leading-relaxed transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                     One day, my senior told me:{" "}
-                    <span className="font-bold italic text-amber-700 dark:text-amber-300">
+                    <span className={`font-bold italic transition-colors duration-300 ${theme === "dark" ? "text-amber-300" : "text-amber-700"}`}>
                       "You don't need to know everything before starting. Learn
                       what you need, when you need it."
                     </span>
                   </p>
-                  <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
+                  <p className={`text-lg leading-relaxed mt-4 transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                     This shifted my entire approach. I stopped trying to
                     complete every course and started{" "}
-                    <span className="font-semibold text-amber-600 dark:text-amber-400">
+                    <span className={`font-semibold transition-colors duration-300 ${theme === "dark" ? "text-amber-400" : "text-amber-600"}`}>
                       learning with purpose
                     </span>
                     —only what my current project demanded.
                   </p>
                 </div>
               </div>
-            </div>
           </section>
 
           {/* Strategies */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-8">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-xl shadow-lg shadow-purple-500/30">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-400 to-purple-500 flex items-center justify-center text-xl shadow-lg transition-colors duration-300 ${theme === "dark" ? "shadow-purple-500/30" : "shadow-purple-500/20"}`}>
                 🎯
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Strategies That Work for Me
+              <h2 className={`text-2xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
+                Strategies That Actually Work
               </h2>
             </div>
 
@@ -338,11 +338,11 @@ export default function FresherBalanceBlog() {
           {/* Mistakes I Made */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-rose-500 flex items-center justify-center text-xl shadow-lg shadow-rose-500/30">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-rose-500 flex items-center justify-center text-xl shadow-lg transition-colors duration-300 ${theme === "dark" ? "shadow-rose-500/30" : "shadow-rose-500/20"}`}>
                 ❌
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
-                Mistakes I Made (So You Don't Have To)
+              <h2 className={`text-2xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
+                Common Mistakes I Made
               </h2>
             </div>
 
@@ -389,45 +389,45 @@ export default function FresherBalanceBlog() {
           {/* Weekly Schedule Example */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-xl shadow-lg shadow-blue-500/30">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-xl shadow-lg transition-colors duration-300 ${theme === "dark" ? "shadow-blue-500/30" : "shadow-blue-500/20"}`}>
                 📅
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              <h2 className={`text-2xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                 My Typical Week
               </h2>
             </div>
 
-            <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50">
+            <div className={`backdrop-blur-sm rounded-2xl p-6 border transition-all duration-300 ${theme === "dark" ? "bg-slate-800/40 border-slate-700/50" : "bg-white/60 border-slate-200"}`}>
               <div className="grid gap-3">
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-indigo-100 to-indigo-50 dark:from-indigo-900/30 dark:to-indigo-900/10">
-                  <span className="font-bold text-indigo-700 dark:text-indigo-300 w-28">
+                <div className={`flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r transition-all duration-300 ${theme === "dark" ? "from-indigo-900/30 to-indigo-900/10" : "from-indigo-100 to-indigo-50"}`}>
+                  <span className={`font-bold w-28 transition-colors duration-300 ${theme === "dark" ? "text-indigo-300" : "text-indigo-700"}`}>
                     Mon - Fri
                   </span>
-                  <span className="text-slate-700 dark:text-slate-300">
+                  <span className={`transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                     🏢 Office work + 1hr morning learning (6-7 AM)
                   </span>
                 </div>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-purple-100 to-purple-50 dark:from-purple-900/30 dark:to-purple-900/10">
-                  <span className="font-bold text-purple-700 dark:text-purple-300 w-28">
+                <div className={`flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r transition-all duration-300 ${theme === "dark" ? "from-purple-900/30 to-purple-900/10" : "from-purple-100 to-purple-50"}`}>
+                  <span className={`font-bold w-28 transition-colors duration-300 ${theme === "dark" ? "text-purple-300" : "text-purple-700"}`}>
                     Tue & Thu
                   </span>
-                  <span className="text-slate-700 dark:text-slate-300">
+                  <span className={`transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                     🧪 30 min evening experiment with new tech
                   </span>
                 </div>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-emerald-100 to-emerald-50 dark:from-emerald-900/30 dark:to-emerald-900/10">
-                  <span className="font-bold text-emerald-700 dark:text-emerald-300 w-28">
+                <div className={`flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r transition-all duration-300 ${theme === "dark" ? "from-emerald-900/30 to-emerald-900/10" : "from-emerald-100 to-emerald-50"}`}>
+                  <span className={`font-bold w-28 transition-colors duration-300 ${theme === "dark" ? "text-emerald-300" : "text-emerald-700"}`}>
                     Saturday
                   </span>
-                  <span className="text-slate-700 dark:text-slate-300">
+                  <span className={`transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                     🛠️ 3hr deep work on personal project
                   </span>
                 </div>
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r from-amber-100 to-amber-50 dark:from-amber-900/30 dark:to-amber-900/10">
-                  <span className="font-bold text-amber-700 dark:text-amber-300 w-28">
+                <div className={`flex items-center gap-4 p-4 rounded-xl bg-gradient-to-r transition-all duration-300 ${theme === "dark" ? "from-amber-900/30 to-amber-900/10" : "from-amber-100 to-amber-50"}`}>
+                  <span className={`font-bold w-28 transition-colors duration-300 ${theme === "dark" ? "text-amber-300" : "text-amber-700"}`}>
                     Sunday
                   </span>
-                  <span className="text-slate-700 dark:text-slate-300">
+                  <span className={`transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                     📚 2hr learning + review notes + REST
                   </span>
                 </div>
@@ -438,138 +438,102 @@ export default function FresherBalanceBlog() {
           {/* Tools That Help */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-xl shadow-lg shadow-purple-500/30">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-xl shadow-lg transition-colors duration-300 ${theme === "dark" ? "shadow-purple-500/30" : "shadow-purple-500/20"}`}>
                 🛠️
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              <h2 className={`text-2xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                 Tools That Help Me Stay Organized
               </h2>
             </div>
 
             <div className="grid sm:grid-cols-3 gap-4">
-              <div className="p-5 bg-white/80 dark:bg-slate-800/80 rounded-2xl text-center border border-slate-200 dark:border-slate-700/50 hover:border-violet-300 dark:hover:border-violet-700 transition-colors">
-                <div className="text-3xl mb-2">📓</div>
-                <h4 className="font-bold text-slate-900 dark:text-white">
-                  Notion
-                </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Notes, learning tracker, project docs
-                </p>
-              </div>
-              <div className="p-5 bg-white/80 dark:bg-slate-800/80 rounded-2xl text-center border border-slate-200 dark:border-slate-700/50 hover:border-violet-300 dark:hover:border-violet-700 transition-colors">
-                <div className="text-3xl mb-2">✅</div>
-                <h4 className="font-bold text-slate-900 dark:text-white">
-                  Todoist
-                </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Daily tasks and learning goals
-                </p>
-              </div>
-              <div className="p-5 bg-white/80 dark:bg-slate-800/80 rounded-2xl text-center border border-slate-200 dark:border-slate-700/50 hover:border-violet-300 dark:hover:border-violet-700 transition-colors">
-                <div className="text-3xl mb-2">⏱️</div>
-                <h4 className="font-bold text-slate-900 dark:text-white">
-                  Pomodoro Timer
-                </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Focused learning sessions
-                </p>
-              </div>
-              <div className="p-5 bg-white/80 dark:bg-slate-800/80 rounded-2xl text-center border border-slate-200 dark:border-slate-700/50 hover:border-violet-300 dark:hover:border-violet-700 transition-colors">
-                <div className="text-3xl mb-2">🐙</div>
-                <h4 className="font-bold text-slate-900 dark:text-white">
-                  GitHub
-                </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Code portfolio & contribution streak
-                </p>
-              </div>
-              <div className="p-5 bg-white/80 dark:bg-slate-800/80 rounded-2xl text-center border border-slate-200 dark:border-slate-700/50 hover:border-violet-300 dark:hover:border-violet-700 transition-colors">
-                <div className="text-3xl mb-2">🎧</div>
-                <h4 className="font-bold text-slate-900 dark:text-white">
-                  Tech Podcasts
-                </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Learning during commute
-                </p>
-              </div>
-              <div className="p-5 bg-white/80 dark:bg-slate-800/80 rounded-2xl text-center border border-slate-200 dark:border-slate-700/50 hover:border-violet-300 dark:hover:border-violet-700 transition-colors">
-                <div className="text-3xl mb-2">💬</div>
-                <h4 className="font-bold text-slate-900 dark:text-white">
-                  Discord/Slack
-                </h4>
-                <p className="text-xs text-slate-600 dark:text-slate-400">
-                  Developer communities
-                </p>
-              </div>
+              {[
+                { icon: "📓", name: "Notion", desc: "Notes, learning tracker, project docs" },
+                { icon: "✅", name: "Todoist", desc: "Daily tasks and learning goals" },
+                { icon: "⏱️", name: "Pomodoro Timer", desc: "Focused learning sessions" },
+                { icon: "🐙", name: "GitHub", desc: "Code portfolio & contribution streak" },
+                { icon: "🎧", name: "Tech Podcasts", desc: "Learning during commute" },
+                { icon: "💬", name: "Discord/Slack", desc: "Developer communities" },
+              ].map((tool) => (
+                <div key={tool.name} className={`p-5 rounded-2xl text-center border transition-all duration-300 ${theme === "dark" ? "bg-slate-800/80 border-slate-700/50 hover:border-violet-700" : "bg-white/80 border-slate-200 hover:border-violet-300"}`}>
+                  <div className="text-3xl mb-2">{tool.icon}</div>
+                  <h4 className={`font-bold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
+                    {tool.name}
+                  </h4>
+                  <p className={`text-xs transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
+                    {tool.desc}
+                  </p>
+                </div>
+              ))}
             </div>
           </section>
 
           {/* Progress Over Time */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-xl shadow-lg shadow-emerald-500/30">
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-xl shadow-lg transition-colors duration-300 ${theme === "dark" ? "shadow-emerald-500/30" : "shadow-emerald-500/20"}`}>
                 📈
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              <h2 className={`text-2xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                 My Growth Over Time
               </h2>
             </div>
 
-            <div className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/20 dark:to-emerald-900/20 backdrop-blur-sm rounded-2xl p-6 border border-green-200 dark:border-green-700/50">
+            <div className={`backdrop-blur-sm rounded-2xl p-6 border transition-all duration-300 ${theme === "dark" ? "bg-green-900/20 border-green-700/50" : "bg-gradient-to-br from-green-50 to-emerald-50 border-green-200"}`}>
               <div className="space-y-4">
                 <div className="flex items-center gap-4">
-                  <span className="w-24 text-sm font-bold text-green-700 dark:text-green-300">
+                  <span className={`w-24 text-sm font-bold transition-colors duration-300 ${theme === "dark" ? "text-green-300" : "text-green-700"}`}>
                     Month 1-3
                   </span>
-                  <div className="flex-1 bg-white dark:bg-slate-800 rounded-full h-4 overflow-hidden">
+                  <div className={`flex-1 rounded-full h-4 overflow-hidden transition-colors duration-300 ${theme === "dark" ? "bg-slate-800" : "bg-white"}`}>
                     <div
                       className="h-full bg-gradient-to-r from-red-400 to-orange-400 rounded-full"
                       style={{ width: "20%" }}
                     />
                   </div>
-                  <span className="text-sm text-slate-600 dark:text-slate-400">
+                  <span className={`text-sm transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
                     Overwhelmed, scattered learning
                   </span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="w-24 text-sm font-bold text-green-700 dark:text-green-300">
+                  <span className={`w-24 text-sm font-bold transition-colors duration-300 ${theme === "dark" ? "text-green-300" : "text-green-700"}`}>
                     Month 4-6
                   </span>
-                  <div className="flex-1 bg-white dark:bg-slate-800 rounded-full h-4 overflow-hidden">
+                  <div className={`flex-1 rounded-full h-4 overflow-hidden transition-colors duration-300 ${theme === "dark" ? "bg-slate-800" : "bg-white"}`}>
                     <div
                       className="h-full bg-gradient-to-r from-amber-400 to-yellow-400 rounded-full"
                       style={{ width: "45%" }}
                     />
                   </div>
-                  <span className="text-sm text-slate-600 dark:text-slate-400">
+                  <span className={`text-sm transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
                     Finding rhythm, still struggling
                   </span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="w-24 text-sm font-bold text-green-700 dark:text-green-300">
+                  <span className={`w-24 text-sm font-bold transition-colors duration-300 ${theme === "dark" ? "text-green-300" : "text-green-700"}`}>
                     Month 7-9
                   </span>
-                  <div className="flex-1 bg-white dark:bg-slate-800 rounded-full h-4 overflow-hidden">
+                  <div className={`flex-1 rounded-full h-4 overflow-hidden transition-colors duration-300 ${theme === "dark" ? "bg-slate-800" : "bg-white"}`}>
                     <div
                       className="h-full bg-gradient-to-r from-lime-400 to-green-400 rounded-full"
                       style={{ width: "70%" }}
                     />
                   </div>
-                  <span className="text-sm text-slate-600 dark:text-slate-400">
+                  <span className={`text-sm transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
                     Strategies working, confidence growing
                   </span>
                 </div>
                 <div className="flex items-center gap-4">
-                  <span className="w-24 text-sm font-bold text-green-700 dark:text-green-300">
+                  <span className={`w-24 text-sm font-bold transition-colors duration-300 ${theme === "dark" ? "text-green-300" : "text-green-700"}`}>
                     Month 10+
                   </span>
-                  <div className="flex-1 bg-white dark:bg-slate-800 rounded-full h-4 overflow-hidden">
+                  <div className={`flex-1 rounded-full h-4 overflow-hidden transition-colors duration-300 ${theme === "dark" ? "bg-slate-800" : "bg-white"}`}>
                     <div
                       className="h-full bg-gradient-to-r from-emerald-400 to-teal-400 rounded-full"
                       style={{ width: "90%" }}
                     />
                   </div>
-                  <span className="text-sm text-slate-600 dark:text-slate-400">
+                  <span className={`text-sm transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
                     Balanced, sustainable growth
                   </span>
                 </div>
@@ -579,15 +543,15 @@ export default function FresherBalanceBlog() {
 
       {/* Closing */}
           <section className="text-center mb-12">
-            <div className="inline-block p-8 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900/30 dark:to-purple-900/30 rounded-3xl">
-              <blockquote className="text-xl font-bold text-slate-700 dark:text-slate-300 mb-4">
+            <div className={`inline-block p-8 rounded-3xl transition-all duration-300 ${theme === "dark" ? "bg-indigo-900/30" : "bg-gradient-to-br from-indigo-100 to-purple-100"}`}>
+              <blockquote className={`text-xl font-bold mb-4 transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                 "You don't have to learn everything. You just have to learn the
                 right things at the right time—and keep showing up."
               </blockquote>
-              <p className="text-lg text-slate-600 dark:text-slate-400">
+              <p className={`text-lg transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
                 The balance isn't perfect every day. Some weeks I learn more,
                 some weeks I ship more. And that's okay.{" "}
-                <span className="font-bold text-indigo-600 dark:text-indigo-400">
+                <span className={`font-bold transition-colors duration-300 ${theme === "dark" ? "text-indigo-400" : "text-indigo-600"}`}>
                   Progress isn't linear.
                 </span>
               </p>
@@ -597,69 +561,48 @@ export default function FresherBalanceBlog() {
 
           {/* Key Takeaways */}
           <section className="mb-12">
-            <div className="bg-slate-900 dark:bg-slate-950 rounded-2xl p-6 text-white">
+            <div className={`rounded-2xl p-6 transition-all duration-300 ${theme === "dark" ? "bg-slate-950 text-white" : "bg-slate-900 text-white"}`}>
               <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
                 <span>📌</span> Key Takeaways
               </h3>
               <div className="grid sm:grid-cols-2 gap-3">
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-400">→</span>
-                  <span className="text-slate-300">
-                    Learn just-in-time, not just-in-case
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-400">→</span>
-                  <span className="text-slate-300">
-                    Projects are the best teachers
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-400">→</span>
-                  <span className="text-slate-300">
-                    Schedule learning like meetings
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-400">→</span>
-                  <span className="text-slate-300">
-                    Go deep in one stack first
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-400">→</span>
-                  <span className="text-slate-300">
-                    Rest is part of learning
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-indigo-400">→</span>
-                  <span className="text-slate-300">
-                    Compare to your past self only
-                  </span>
-                </div>
+                {[
+                  "Learn just-in-time, not just-in-case",
+                  "Projects are the best teachers",
+                  "Schedule learning like meetings",
+                  "Go deep in one stack first",
+                  "Rest is part of learning",
+                  "Compare to your past self only",
+                ].map((point) => (
+                  <div key={point} className="flex items-center gap-2">
+                    <span className="text-indigo-400">→</span>
+                    <span className="text-slate-300">
+                      {point}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
           </section>
 
           {/* Share & Navigation */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t border-slate-200 dark:border-slate-700">
+          <div className={`flex flex-col sm:flex-row items-center justify-between gap-6 pt-8 border-t transition-colors duration-300 ${theme === "dark" ? "border-slate-700" : "border-slate-200"}`}>
             <div className="flex items-center gap-3">
-              <span className="text-slate-500 dark:text-slate-400">
+              <span className={`transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
                 Share this:
               </span>
-              <button className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors cursor-pointer">
+              <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${theme === "dark" ? "bg-slate-800 hover:bg-indigo-900/50" : "bg-slate-100 hover:bg-indigo-100"}`}>
                 <svg
-                  className="w-5 h-5 text-slate-600 dark:text-slate-400"
+                  className={`w-5 h-5 transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
                   <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
                 </svg>
               </button>
-              <button className="w-10 h-10 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors cursor-pointer">
+              <button className={`w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 cursor-pointer ${theme === "dark" ? "bg-slate-800 hover:bg-indigo-900/50" : "bg-slate-100 hover:bg-indigo-100"}`}>
                 <svg
-                  className="w-5 h-5 text-slate-600 dark:text-slate-400"
+                  className={`w-5 h-5 transition-colors duration-300 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}
                   fill="currentColor"
                   viewBox="0 0 24 24"
                 >
@@ -669,7 +612,7 @@ export default function FresherBalanceBlog() {
             </div>
             <Link
               href="/Blogs"
-              className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-indigo-500/30 transition-all hover:-translate-y-0.5"
+              className={`px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-xl transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5 ${theme === "dark" ? "hover:shadow-indigo-500/30" : "hover:shadow-indigo-500/20"}`}
             >
               View More Posts →
             </Link>
