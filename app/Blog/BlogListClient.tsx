@@ -64,12 +64,12 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
   }, [allPosts, sortBy]);
 
   return (
-    <div className={`min-h-screen w-full pt-20 pb-10 px-2 sm:px-0 ${theme === "dark" ? "bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900" : "bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50"} transition-colors duration-300`}>
-      <div className="max-w-6xl mx-auto p-4 sm:p-8 rounded-3xl shadow-2xl bg-white/90 dark:bg-slate-800/90 backdrop-blur-xl border border-blue-200 dark:border-purple-800 transition-colors duration-300">
-        <h1 className={`text-4xl font-extrabold mb-10 ${theme === "dark" ? "text-purple-300" : "text-blue-900"} drop-shadow-lg flex items-center gap-3 transition-colors duration-300`}>
+    <div className={`min-h-screen w-full pt-20 pb-10 px-2 sm:px-0 ${theme === "dark" ? "bg-gradient-to-br from-gray-900 via-indigo-950 to-gray-900" : "bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-50"} transition-colors duration-300`}>
+      <div className={`max-w-6xl mx-auto p-4 sm:p-8 rounded-3xl shadow-2xl ${theme === "dark" ? " from-slate-900 via-violet-900/40 to-slate-900 border-purple-800" : "bg-white/90 border-blue-200"} backdrop-blur-xl border transition-colors duration-300`}>
+        <h1 className={`text-4xl font-bold mb-10 ${theme === "dark" ? "text-blue-100" : "text-blue-700"} drop-shadow-lg flex items-center gap-3 transition-colors duration-300`}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            className={`h-10 w-10 ${theme === "dark" ? "text-purple-400" : "text-blue-600"} transition-colors duration-300`}
+            className={`h-10 w-10 ${theme === "dark" ? "text-blue-100" : "text-blue-600"} transition-colors duration-300`}
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -81,7 +81,7 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
               d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"
             />
           </svg>
-          Blog
+          Blogs
         </h1>
         <div className="flex flex-col lg:flex-row gap-10">
           <div className="flex-1 space-y-8">
@@ -95,24 +95,24 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
               sortedPosts.map(({ slug, frontmatter }) => (
               <div
                 key={slug}
-                className={`p-6 border ${theme === "dark" ? "border-purple-800 bg-slate-700/50 hover:shadow-purple-500/30 hover:border-purple-700" : "border-blue-200 bg-white/90 hover:shadow-blue-300/40"} rounded-2xl shadow-lg transition backdrop-blur-md group hover:scale-[1.02] active:scale-100 duration-200`}
+                className={`p-6 border ${theme === "dark" ? "border-purple-800 bg-gray-800/50 hover:shadow-purple-500/30 hover:border-purple-700" : "border-blue-200 bg-white/90 hover:shadow-blue-300/40"} rounded-2xl shadow-lg transition backdrop-blur-md group hover:scale-[1.02] active:scale-100 duration-200`}
               >
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   {/* Left Side - Content */}
                   <div className="md:col-span-2 flex flex-col justify-between">
                     <div>
                       {/* Date */}
-                      <span className={`text-xs font-semibold px-2 py-1 rounded shadow-sm transition-colors duration-300 ${theme === "dark" ? "text-green-200 bg-green-900/60" : "text-green-800 bg-green-100"}`}>
+                      <span className={`text-xs px-2 py-1 rounded shadow-sm transition-colors duration-300 ${theme === "dark" ? "text-green-200 bg-green-900/60" : "text-green-800 bg-green-100"}`}>
                         {frontmatter.date}
                       </span>
 
                       {/* Title */}
-                      <h2 className={`text-2xl font-bold mt-2 transition-colors duration-300 ${theme === "dark" ? "text-purple-300 group-hover:text-purple-200" : "text-blue-700 group-hover:text-blue-900"}`}>
+                      <h2 className={`text-2xl font-bold mt-2 transition-colors duration-300 ${theme === "dark" ? "text-white group-hover:text-purple-200" : "text-blue-700 group-hover:text-blue-900"}`}>
                         {frontmatter.title}
                       </h2>
 
                       {/* Description */}
-                      <p className={`mt-3 line-clamp-3 transition-colors duration-300 ${theme === "dark" ? "text-gray-300": "text-gray-700"}`}>
+                      <p className={`mt-3 line-clamp-3 transition-colors duration-300 ${theme === "dark" ? "text-gray-100": "text-gray-700"}`}>
                         {frontmatter.description}
                       </p>
 
@@ -121,7 +121,7 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
                         {frontmatter.tags?.map((tag: string) => (
                           <span
                             key={tag}
-                            className={`text-xs px-2 py-1 rounded-md font-semibold shadow transition-colors duration-300 ${theme === "dark" ? "bg-purple-900/60 text-purple-200 hover:bg-purple-800/80" : "bg-blue-100 text-blue-700 hover:bg-blue-200"}`}
+                            className={`text-xs px-2 py-1 rounded-md shadow transition-colors duration-300 ${theme === "dark" ? "bg-purple-900/60 text-purple-100 hover:bg-purple-800/80" : "bg-blue-100 text-blue-700 hover:bg-blue-200"}`}
                           >
                             #{tag}
                           </span>
@@ -131,7 +131,7 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
 
                     {/* Read More */}
                     <Link href={`/Blog/post/${slug}`}>
-                      <span className={`mt-4 inline-block font-bold hover:underline transition-colors duration-300 ${theme === "dark" ? "text-purple-300 hover:text-purple-100" : "text-blue-600 hover:text-blue-800"}`}>
+                      <span className={`mt-4 inline-block font-bold hover:underline transition-colors duration-300 ${theme === "dark" ? "text-purple-200 hover:text-red-300" : "text-blue-600 hover:text-blue-800"}`}>
                         Read More →
                       </span>
                     </Link>
@@ -152,12 +152,12 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
           </div>
 
           {/* Sidebar */}
-          <aside className={`w-full lg:w-72 space-y-6 p-6 rounded-3xl shadow-2xl border-4 backdrop-blur-xl transition-all duration-300 ${theme === "dark" ? "bg-gradient-to-br from-slate-800/90 to-slate-700/90 border-purple-800/50" : "bg-gradient-to-br from-white/90 to-blue-50/50 border-blue-300"}`}>
+          <aside className={`w-full lg:w-72 space-y-6 p-6 rounded-3xl shadow-2xl border-4 backdrop-blur-xl transition-all duration-300 ${theme === "dark" ? " from-slate-900 via-violet-800/40 to-slate-900 border-purple-900/50" : "bg-gradient-to-br from-white/90 to-blue-50/50 border-blue-300"}`}>
             {/* Sort Section */}
             <div className={`rounded-2xl shadow-lg p-5 border backdrop-blur-md transition-colors duration-300 ${theme === "dark" ? "bg-gradient-to-br from-slate-700/50 to-slate-600/50 border-purple-700/50" : "bg-gradient-to-br from-blue-50 to-cyan-50 border-blue-200"}`}>
               <div className="flex items-center gap-2 mb-3">
                 <svg
-                  className={`w-5 h-5 transition-colors duration-300 ${theme === "dark" ? "text-purple-400" : "text-blue-600"}`}
+                  className={`w-5 h-5 transition-colors duration-300 ${theme === "dark" ? "text-purple-200" : "text-blue-600"}`}
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -188,7 +188,7 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
                 <option value="z-a">🔠 Z-A (Title)</option>
               </select>
               <div className="mt-3 flex items-center gap-2 text-sm">
-                <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full font-semibold transition-colors duration-300 ${theme === "dark" ? "bg-purple-900/50 text-purple-300" : "bg-blue-100 text-blue-700"}`}>
+                <span className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full transition-colors duration-300 ${theme === "dark" ? "bg-purple-700/50 text-purple-200" : "bg-blue-100 text-blue-700"}`}>
                   <svg
                     className="w-4 h-4"
                     fill="none"
@@ -214,15 +214,15 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
                   S
                 </div>
                 <div>
-                  <h3 className={`font-bold transition-colors duration-300 ${theme === "dark" ? "text-purple-200" : "text-purple-900"}`}>
+                  <h3 className={`font-bold transition-colors duration-300 ${theme === "dark" ? "text-purple-100" : "text-purple-900"}`}>
                     Shashank S P
                   </h3>
-                  <p className={`text-xs transition-colors duration-300 ${theme === "dark" ? "text-purple-400" : "text-purple-600"}`}>
+                  <p className={`text-xs transition-colors duration-300 ${theme === "dark" ? "text-blue-100" : "text-purple-600"}`}>
                     Full Stack Developer
                   </p>
                 </div>
               </div>
-              <p className={`text-sm ${theme === "dark" ? "text-gray-300" : "text-gray-700"} mb-3`}>
+              <p className={`text-sm ${theme === "dark" ? "text-gray-200" : "text-gray-700"} mb-3`}>
                 Sharing my journey from Mechanical Engineering to Full Stack
                 Development, real-world projects, and coding insights.
               </p>
@@ -231,7 +231,7 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`flex-1 text-center px-3 py-2 ${theme === "dark" ? "bg-purple-900/50 text-purple-300 hover:bg-purple-800/80" : "bg-purple-100 text-purple-700 hover:bg-purple-200"} rounded-lg transition-colors font-semibold text-sm`}
+                  className={`flex-1 text-center px-3 py-2 ${theme === "dark" ? "bg-purple-900/50 text-purple-200 hover:bg-purple-800/80" : "bg-purple-100 text-purple-700 hover:bg-purple-200"} rounded-lg transition-colors font-semibold text-sm`}
                 >
                   GitHub
                 </a>
@@ -239,7 +239,7 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 text-center px-3 py-2 bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 rounded-lg hover:bg-blue-200 dark:hover:bg-blue-800/80 transition-colors font-semibold text-sm"
+                  className={`flex-1 text-center px-3 py-2   rounded-lg ${theme === "dark" ? "bg-blue-900/50 text-blue-200 hover:bg-blue-800/80" : "text-blue-700 bg-blue-100 hover:bg-blue-200"} transition-colors font-semibold text-sm`}
                 >
                   LinkedIn
                 </a>
@@ -343,11 +343,11 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
-                <h2 className={`font-bold transition-colors duration-300 ${theme === "dark" ? "text-indigo-200" : "text-indigo-900"}`}>
+                <h2 className={`font-bold transition-colors duration-300 ${theme === "dark" ? "text-indigo-100" : "text-indigo-900"}`}>
                   Stay Updated
                 </h2>
               </div>
-              <p className={`text-sm mb-3 transition-colors duration-300 ${theme === "dark" ? "text-gray-300" : "text-gray-700"}`}>
+              <p className={`text-sm mb-3 transition-colors duration-300 ${theme === "dark" ? "text-gray-200" : "text-gray-700"}`}>
                 Get notified when I publish new posts about development,
                 projects, and career insights.
               </p>
@@ -377,7 +377,7 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
                     d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
                   />
                 </svg>
-                <h2 className={`font-bold transition-colors duration-300 ${theme === "dark" ? "text-emerald-200" : "text-emerald-900"}`}>
+                <h2 className={`font-bold transition-colors duration-300 ${theme === "dark" ? "text-emerald-300" : "text-emerald-900"}`}>
                   Blog Stats
                 </h2>
               </div>
@@ -386,7 +386,7 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
                   <div className={`text-2xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-emerald-400" : "text-emerald-600"}`}>
                     {sortedPosts.length}
                   </div>
-                  <div className={`text-xs transition-colors duration-300 ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+                  <div className={`text-xs transition-colors duration-300 ${theme === "dark" ? "text-gray-200" : "text-gray-600"}`}>
                     Total Posts
                   </div>
                 </div>
@@ -394,7 +394,7 @@ export default function BlogListClient({ posts: allPosts }: BlogListClientProps)
                   <div className={`text-2xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-emerald-400" : "text-emerald-600"}`}>
                     {new Set(sortedPosts.flatMap((p) => p.frontmatter.tags || [])).size}
                   </div>
-                  <div className={`text-xs transition-colors duration-300 ${theme === "dark" ? "text-gray-400" : "text-gray-600"}`}>
+                  <div className={`text-xs transition-colors duration-300 ${theme === "dark" ? "text-gray-200" : "text-gray-600"}`}>
                     Categories
                   </div>
                 </div>

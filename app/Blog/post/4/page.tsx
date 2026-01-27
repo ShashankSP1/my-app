@@ -124,7 +124,7 @@ export default function FitnessBlog() {
             </div>
 
             {/* Title */}
-            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
+            <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
               Balancing Health & Coding:{" "}
               <span className="bg-gradient-to-r from-lime-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
                 Fitness for Developers
@@ -485,7 +485,7 @@ export default function FitnessBlog() {
 
           {/* Closing Quote */}
           <section className="text-center mb-12">
-            <div className="inline-block p-8 bg-gradient-to-br from-lime-100 to-emerald-100 dark:from-lime-900/30 dark:to-emerald-900/30 rounded-3xl">
+            <div className={`inline-block p-8 ${theme === "dark" ? "bg-gradient-to-br from-lime-900/30 to-emerald-900/30" : "bg-gradient-to-br from-lime-100 to-emerald-100"} rounded-3xl`}>
               <blockquote className={`text-2xl font-bold italic mb-4 transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                 "You don't need a gym membership to stay fit. Small, consistent
                 habits can make you healthier and more productive as a
