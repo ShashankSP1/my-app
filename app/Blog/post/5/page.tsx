@@ -135,7 +135,7 @@ export default function FresherBalanceBlog() {
             </div>
 
             {/* Title */}
-            <h1 className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
+            <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
               Balancing Learning and Real-World Projects as a{" "}
               <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
                 Fresher Developer
@@ -172,16 +172,16 @@ export default function FresherBalanceBlog() {
             <p className={`text-lg leading-relaxed transition-colors duration-300 ${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
               As a fresher developer, I constantly felt pulled in two
               directions: the{" "}
-              <span className="font-bold text-indigo-600 dark:text-indigo-400">
+              <span className={`font-bold ${theme === "dark" ? "text-indigo-400" : "text-indigo-600"}`}>
                 endless ocean of things to learn
               </span>{" "}
               and the{" "}
-              <span className="font-bold text-purple-600 dark:text-purple-400">
+              <span className={`font-bold ${theme === "dark" ? "text-purple-400" : "text-purple-600"}`}>
                 pressure to deliver real projects
               </span>
               .
             </p>
-            <p className="text-lg text-slate-700 dark:text-slate-300 leading-relaxed mt-4">
+            <p className={`text-lg ${theme === "dark" ? "text-slate-300" : "text-slate-700"} leading-relaxed mt-4`}>
               Should I finish that React course or fix that production bug?
               Learn TypeScript deeply or ship features faster? This post shares
               my honest experiences and the strategies that finally helped me
@@ -338,7 +338,7 @@ export default function FresherBalanceBlog() {
           {/* Mistakes I Made */}
           <section className="mb-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-red-400 to-rose-500 flex items-center justify-center text-xl shadow-lg transition-colors duration-300 ${theme === "dark" ? "shadow-rose-500/30" : "shadow-rose-500/20"}`}>
+              <div className={`w-10 h-10 rounded-xl bg-gradient-to-br from-red-500 to-rose-700 flex items-center justify-center text-xl shadow-lg transition-colors duration-300 ${theme === "dark" ? "shadow-rose-500/30" : "shadow-rose-500/20"}`}>
                 ❌
               </div>
               <h2 className={`text-2xl font-bold transition-colors duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"}`}>

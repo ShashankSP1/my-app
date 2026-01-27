@@ -50,7 +50,7 @@ export default function FirstBlog() {
             <div className="flex flex-row gap-4">
               <Link
               href="/Blogs"
-              className={`inline-flex items-center gap-2 mb-8 group transition-colors ${theme === "dark" ? "text-violet-400 hover:text-violet-300" : "text-violet-600 hover:text-violet-800"}`}
+              className={`inline-flex items-center gap-2 mb-8 group transition-colors ${theme === "dark" ? "text-violet-500 hover:text-violet-300" : "text-violet-600 hover:text-violet-800"}`}
             >
               <svg
                 className="w-5 h-5 group-hover:-translate-x-1 transition-transform"
@@ -79,7 +79,7 @@ export default function FirstBlog() {
 
             {/* Title */}
             <h1
-              className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
+              className={`text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
             >
               My 2025 Tech Stack as a{" "}
               <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-pink-600 bg-clip-text text-transparent">
@@ -154,7 +154,7 @@ export default function FirstBlog() {
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-xl shadow-lg shadow-orange-500/30">
                   🧱
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                <h2 className={`text-2xl font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                   Core Technologies
                 </h2>
               </div>
@@ -178,7 +178,7 @@ export default function FirstBlog() {
                     theme === "dark" ? "text-yellow-300" : "text-yellow-700"
                   )}
                 </div>
-                <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                <div className={`mt-4 space-y-2 ${theme === "dark" ? "text-slate-200" : "text-slate-700"} text-sm`}>
                   <p>→ Semantic and accessible markup with HTML5</p>
                   <p>→ Modern layouts with Flexbox & Grid</p>
                   <p>→ The backbone of frontend logic</p>
@@ -192,7 +192,7 @@ export default function FirstBlog() {
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center text-xl shadow-lg shadow-blue-500/30">
                   ⚛️
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                <h2 className={`text-2xl font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                   Frameworks & Libraries
                 </h2>
               </div>
@@ -211,7 +211,7 @@ export default function FirstBlog() {
                     theme === "dark" ? "text-slate-300" : "text-slate-700"
                   )}
                 </div>
-                <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                <div className={`mt-4 space-y-2 ${theme === "dark" ? "text-slate-200" : "text-slate-700"} text-sm`}>
                   <p>→ Component-based UI with hooks</p>
                   <p>→ Routing, SSR, and performance optimization</p>
                 </div>
@@ -224,7 +224,7 @@ export default function FirstBlog() {
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-pink-400 to-rose-500 flex items-center justify-center text-xl shadow-lg shadow-rose-500/30">
                   🎨
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                <h2 className={`text-2xl font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                   Styling
                 </h2>
               </div>
@@ -248,7 +248,7 @@ export default function FirstBlog() {
                     theme === "dark" ? "text-indigo-300" : "text-indigo-700"
                   )}
                 </div>
-                <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                <div className={`mt-4 space-y-2 ${theme === "dark" ? "text-slate-200" : "text-slate-700"} text-sm`}>
                   <p>→ Utility-first styling for rapid development</p>
                   <p>→ Reusable UI components</p>
                 </div>
@@ -261,7 +261,7 @@ export default function FirstBlog() {
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-xl shadow-lg shadow-emerald-500/30">
                   🔄
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                <h2 className={`text-2xl font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                   State & Forms
                 </h2>
               </div>
@@ -285,7 +285,7 @@ export default function FirstBlog() {
                     theme === "dark" ? "text-blue-300" : "text-blue-700"
                   )}
                 </div>
-                <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                <div className={`mt-4 space-y-2 ${theme === "dark" ? "text-slate-200" : "text-slate-700"} text-sm`}>
                   <p>→ Local state & side effects</p>
                   <p>→ Lightweight global state management</p>
                   <p>→ Form handling & validation</p>
@@ -299,7 +299,7 @@ export default function FirstBlog() {
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center text-xl shadow-lg shadow-purple-500/30">
                   🛠
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                <h2 className={`text-2xl font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                   Developer Tools
                 </h2>
               </div>
@@ -328,7 +328,7 @@ export default function FirstBlog() {
                     theme === "dark" ? "text-pink-300" : "text-pink-700"
                   )}
                 </div>
-                <div className="mt-4 space-y-2 text-slate-600 dark:text-slate-400 text-sm">
+                <div className={`mt-4 space-y-2 ${theme === "dark" ? "text-slate-200" : "text-slate-700"} text-sm`}>
                   <p>→ Version control & collaboration</p>
                   <p>→ Fast development builds</p>
                   <p>→ Code quality & formatting</p>
@@ -342,7 +342,7 @@ export default function FirstBlog() {
                 <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-400 to-pink-500 flex items-center justify-center text-xl shadow-lg shadow-pink-500/30 animate-pulse">
                   🚀
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+                <h2 className={`text-2xl font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                   What I'm Learning Next
                 </h2>
               </div>
@@ -350,27 +350,27 @@ export default function FirstBlog() {
                 className={`backdrop-blur-sm rounded-2xl p-6 border-2 border-dashed group-hover:border-solid transition-all ${theme === "dark" ? "from-violet-900/20 to-pink-900/20 border-violet-700" : "from-violet-50 to-pink-50 border-violet-300"}`}
               >
                 <div className="grid sm:grid-cols-2 gap-4">
-                  <div className="flex items-center gap-3 p-3 bg-white/80 dark:bg-slate-800/80 rounded-xl">
+                  <div className={`flex items-center gap-3 p-3 ${theme === "dark" ? "bg-slate-800/80" : "bg-white/80"} rounded-xl`}>
                     <span className="text-2xl">📚</span>
-                    <span className="text-slate-700 dark:text-slate-300">
+                    <span className={`${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                       Advanced React patterns
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-white/80 dark:bg-slate-800/80 rounded-xl">
+                  <div className={`flex items-center gap-3 p-3 ${theme === "dark" ? "bg-slate-800/80" : "bg-white/80"} rounded-xl`}>
                     <span className="text-2xl">⚡</span>
-                    <span className="text-slate-700 dark:text-slate-300">
+                    <span className={`${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                       Performance optimization
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-white/80 dark:bg-slate-800/80 rounded-xl">
+                  <div className={`flex items-center gap-3 p-3 ${theme === "dark" ? "bg-slate-800/80" : "bg-white/80"} rounded-xl`}>
                     <span className="text-2xl">♿</span>
-                    <span className="text-slate-700 dark:text-slate-300">
+                    <span className={`${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                       Accessibility (ARIA, WCAG)
                     </span>
                   </div>
-                  <div className="flex items-center gap-3 p-3 bg-white/80 dark:bg-slate-800/80 rounded-xl">
+                  <div className={`flex items-center gap-3 p-3 ${theme === "dark" ? "bg-slate-800/80" : "bg-white/80"} rounded-xl`}>
                     <span className="text-2xl">📘</span>
-                    <span className="text-slate-700 dark:text-slate-300">
+                    <span className={`${theme === "dark" ? "text-slate-300" : "text-slate-700"}`}>
                       TypeScript (deep dive)
                     </span>
                   </div>

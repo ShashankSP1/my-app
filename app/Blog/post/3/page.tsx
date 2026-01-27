@@ -71,10 +71,10 @@ export default function VillagepeBlog() {
 
           <div className="relative max-w-4xl mx-auto px-6 pt-24 pb-16">
             {/* Navigation */}
-            <div className="flex flex-wrap items-center gap-4 mb-8">
+            <div className="flex flex-row gap-4 mb-8">
               <Link
                 href="/Blogs"
-                className="inline-flex items-center gap-2 text-amber-600 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 transition-colors group"
+                className={`inline-flex items-center gap-2 ${theme === "dark" ? "text-amber-400 hover:text-amber-300" : "text-amber-600 hover:text-amber-800"} transition-colors group`}
               >
                 <svg
                   className="w-5 h-5 group-hover:-translate-x-1 transition-transform"
@@ -92,17 +92,17 @@ export default function VillagepeBlog() {
                 Back to Blogs
               </Link>
 
-              <span className="inline-block px-4 py-1.5 bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 rounded-full text-sm font-semibold">
+              <span className={`inline-block px-4 py-1.5 ${theme === "dark" ? "bg-amber-900/50 text-amber-300" : "bg-amber-100 text-amber-700"} rounded-full text-sm font-semibold`}>
                 Real-World Project
               </span>
 
-              <span className="inline-block px-4 py-1.5 bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300 rounded-full text-sm font-semibold">
+              <span className={`inline-block px-4 py-1.5 ${theme === "dark" ? "bg-green-900/50 text-green-300" : "bg-green-100 text-green-700"} rounded-full text-sm font-semibold`}>
                 FinTech
               </span>
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-slate-900 dark:text-white leading-tight mb-6">
+            <h1 className={`text-3xl md:text-4xl lg:text-5xl font-bold ${theme === "dark" ? "text-white" : "text-slate-900"} leading-tight mb-6`}>
               Lessons Learned from Working on{" "}
               <span className="bg-gradient-to-r from-amber-600 via-orange-600 to-red-600 bg-clip-text text-transparent">
                 VillagepePro
@@ -110,7 +110,7 @@ export default function VillagepeBlog() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mb-8">
+            <p className={`text-xl ${theme === "dark" ? "text-slate-400" : "text-slate-600"} max-w-2xl mb-8`}>
               My first real-world project as a developer—a comprehensive fintech
               platform that taught me more than any tutorial ever could.
             </p>
@@ -121,10 +121,10 @@ export default function VillagepeBlog() {
                 S
               </div>
               <div>
-                <p className="font-semibold text-slate-900 dark:text-white">
+                <p className={`font-semibold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                   Shashank S P
                 </p>
-                <p className="text-sm text-slate-500 dark:text-slate-400">
+                <p className={`text-sm ${theme === "dark" ? "text-slate-400" : "text-slate-500"}`}>
                   September 22, 2025 · 10 min read
                 </p>
               </div>
@@ -345,7 +345,7 @@ export default function VillagepeBlog() {
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-xl shadow-lg shadow-orange-500/30">
                 💡
               </div>
-              <h2 className="text-2xl font-bold text-slate-900 dark:text-white">
+              <h2 className={`text-2xl font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>
                 Key Lessons Learned
               </h2>
             </div>
@@ -453,7 +453,7 @@ export default function VillagepeBlog() {
               <p className={`mb-4 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}>
                 One pattern I developed for handling payment API calls safely:
               </p>
-              <pre className="bg-slate-900 dark:bg-slate-950 rounded-xl p-4 overflow-x-auto border border-slate-700">
+              <pre className={`${theme === "dark" ? "bg-slate-950" : "bg-slate-900"} rounded-xl p-4 overflow-x-auto border border-slate-700`}>
                 <code className="text-sm text-emerald-400 font-mono">
                   {`const processRecharge = async (data) => {
   try {

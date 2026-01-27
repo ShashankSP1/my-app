@@ -20,7 +20,7 @@ export default function PortfolioBlog() {
   }, []);
 
   const codeBlock = (code: string, language: string) => (
-    <pre className="bg-slate-900 dark:bg-slate-950 rounded-xl p-4 overflow-x-auto my-4 border border-slate-700">
+    <pre className={`${theme === "dark" ? "dark:bg-slate-950" : "bg-slate-900"} rounded-xl p-4 overflow-x-auto my-4 border border-slate-700`}>
       <code className="text-sm text-emerald-400 font-mono">{code}</code>
     </pre>
   );
@@ -70,10 +70,10 @@ export default function PortfolioBlog() {
 
           <div className="relative max-w-4xl mx-auto px-6 pt-24 pb-16">
             {/* Navigation */}
-            <div className="flex flex-wrap items-center gap-4 mb-8">
+            <div className="flex flex-row gap-4">
               <Link
                 href="/Blogs"
-                className={`inline-flex items-center gap-2 mb-8 group transition-colors ${theme === "dark" ? "text-emerald-400 hover:text-emerald-300" : "text-emerald-600 hover:text-emerald-800"}`}
+                className={`inline-flex items-center gap-2 mb-8 group transition-colors ${theme === "dark" ? "text-emerald-500 hover:text-emerald-300" : "text-emerald-600 hover:text-emerald-800"}`}
               >
                 <svg
                   className="w-5 h-5 group-hover:-translate-x-1 transition-transform"
@@ -92,7 +92,7 @@ export default function PortfolioBlog() {
                 Back to Blogs
               </Link>
               <span
-                className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold ${theme === "dark" ? "bg-emerald-900/50 text-emerald-300" : "bg-emerald-100 text-emerald-700"}`}
+                className={`inline-block px-4 py-1.5 rounded-full text-sm font-semibold mb-6 ${theme === "dark" ? "bg-emerald-900/50 text-emerald-300" : "bg-emerald-100 text-emerald-700"}`}
               >
                 Portfolio Project
               </span>
@@ -100,7 +100,7 @@ export default function PortfolioBlog() {
 
             {/* Title */}
             <h1
-              className={`text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
+              className={`text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 ${theme === "dark" ? "text-white" : "text-slate-900"}`}
             >
               How I Built My{" "}
               <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
@@ -174,7 +174,7 @@ export default function PortfolioBlog() {
                 Tech Stack Used
               </h2>
             </div>
-            <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50">
+            <div className={`${theme === "dark" ? "dark:bg-slate-800/40 border-slate-700/50 " : "bg-white/60 border-slate-200"} backdrop-blur-sm rounded-2xl p-6 border`}>
               <div className="flex flex-wrap gap-3">
                 {techPill(
                   "Next.js 15",
@@ -358,7 +358,7 @@ export default function PortfolioBlog() {
               </h2>
             </div>
 
-            <div className="bg-white/60 dark:bg-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-slate-200 dark:border-slate-700/50">
+            <div className={`${theme === "dark" ? "dark:bg-slate-800/40 border-slate-700/50 " : "bg-white/60 border-slate-200"} backdrop-blur-sm rounded-2xl p-6 border`}>
               <p
                 className={`mb-4 ${theme === "dark" ? "text-slate-400" : "text-slate-600"}`}
               >
@@ -373,7 +373,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2 rounded-lg bg-slate-200 dark:bg-slate-800"
+      className="p-2 rounded-lg bg-slate-200 dark:bg-slate-800
     >
       {theme === 'dark' ? '☀️' : '🌙'}
     </button>
