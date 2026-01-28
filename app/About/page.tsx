@@ -174,7 +174,7 @@ const about = () => {
                       Location
                     </div>
                     <div className={`font-bold ${theme === "dark" ? "text-white" : "text-gray-900"}`}>
-                      Bengaluru, KA
+                      Bengaluru, Karnataka, India
                     </div>
                   </div>
                 </div>
@@ -394,15 +394,11 @@ const about = () => {
               const Icon = item.icon;
               const colorClasses = {
                 blue: "from-blue-500 to-cyan-500 border-blue-200 dark:border-blue-800",
-                green:
-                  "from-green-500 to-emerald-500 border-green-200 dark:border-green-800",
-                purple:
-                  "from-purple-500 to-pink-500 border-purple-200 dark:border-purple-800",
+                green: "from-green-500 to-emerald-500 border-green-200 dark:border-green-800",
+                purple: "from-purple-500 to-pink-500 border-purple-200 dark:border-purple-800",
                 pink: "from-pink-500 to-rose-500 border-pink-200 dark:border-pink-800",
-                yellow:
-                  "from-yellow-500 to-amber-500 border-yellow-200 dark:border-yellow-800",
-                indigo:
-                  "from-indigo-500 to-violet-500 border-indigo-200 dark:border-indigo-800",
+                yellow: "from-yellow-500 to-amber-500 border-yellow-200 dark:border-yellow-800",
+                indigo: "from-indigo-500 to-violet-500 border-indigo-200 dark:border-indigo-800",
               };
 
               return (
