@@ -47,27 +47,27 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">My Projects</h3>
             <ul className="space-y-1.5">
               <li>
-                <a href="#project1" className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
+                <a href={"/Project/1"} className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
                   Portfolio Website
                 </a>
               </li>
               <li>
-                <a href="#project2" className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
+                <a href={"/Project/2"} className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
                   Villagepepro
                 </a>
               </li>
               <li>
-                <a href="#project3" className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
+                <a href={"/Project/3"} className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
                   CCIE Labs
                 </a>
               </li>
               <li>
-                <a href="#project3" className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
+                <a href={"/Project/4"} className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
                   Home Pitara
                 </a>
               </li>
               <li>
-                <a href="#project3" className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
+                <a href={"/Project/5"} className={`${theme==='dark' ? 'hover:text-white':'hover:text-black'}`}>
                   Samgamam
                 </a>
               </li>
